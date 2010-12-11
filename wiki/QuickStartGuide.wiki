@@ -11,15 +11,38 @@ This is a quick start guide describing the minimum required steps to get the pro
 First you need to fill the requirements. 
 
 Download and install the following programs:
-  * .NET Framework 4.0
-  * iWrap
+  * [http://msdn.microsoft.com/en-us/netframework/aa569263.aspx .NET Framework 4.0]
+  * iWrap [http://sourceforge.net/projects/iwrap/files/ Download iWrapXXXXSetup.exe]
+
+== Enable Aero ==
+
+iRTVO uses Windows Presentation Foundation for its graphics. WPF on the other hand relies heavily on Windows' Aero user interface. Without Aero you'll take significant performance hit (in my case fps halved).
+
+[http://www.petri.co.il/enable_windows_vista_aero_graphics.htm Guide how to enable Aero]
 
 == Setup iRacing.com ==
 
 There are few things that needs to be changed in the sim to get the overlay working properly.
 
+Go to My documents/iRacing folder and open *{{{app.ini}}}*.
+
+Change the following lines under {{{Graphics}}} section:
+{{{
+fullScreen=0
+reduceFramerateWhenFocusLost=0
+serverTransmitMaxCars=64
+}}}
+
+You can change the {{{fullScreen}}} setting in the sim from the Options/Graphics uncheking the full screen box.
+
+Save and close the file.
+
 == iRTVO ===
 
-Download, extract
+[http://code.google.com/p/irtvo/downloads/list Download the latest version] and extract it .
 
-== Get, set, go! ==
+== Ready, get, set, go! ==
+  * Check that you have iWrap running from your notification tray
+  * Launch iRTVO
+  * Launch iRacing
+  * Start broadcasting!
