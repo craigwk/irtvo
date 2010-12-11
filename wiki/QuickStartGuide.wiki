@@ -10,7 +10,16 @@ This is a quick start guide describing the minimum required steps to get the pro
 
 First you need to fill the requirements. 
 
-Download the following programs:
+Download and install the following programs:
   * .NET Framework 4.0
   * iWrap
-  * iRTVO
+
+== Setup iRacing.com ==
+
+There are few things that needs to be changed in the sim to get the overlay working properly.
+
+== iRTVO ===
+
+Download, extract
+
+== Get, set, go! ==
