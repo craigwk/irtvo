@@ -40,13 +40,13 @@ You can change the {{{fullScreen}}} setting in the sim from the Options/Graphics
 === core.ini ===
 Open *{{{core.ini}}}*.
 
-Change {{{session_info_period=1.000000}}} under {{{Telemetry}}} section. This makes the timer tick every second.
+Change {{{session_info_period=1.000000}}} under {{{Telemetry}}} section. This makes the timer tick every second and remove delay from lap counter.
 
 Save and close the files.
 
 == iRTVO ===
 
-[http://code.google.com/p/irtvo/downloads/list Download the latest version] and extract it .
+[http://code.google.com/p/irtvo/downloads/list Download the latest version] and extract it.
 
 == Ready, get, set, go! ==
   * Check that you have iWrap running from your notification tray
