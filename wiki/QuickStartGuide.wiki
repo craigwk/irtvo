@@ -35,7 +35,11 @@ serverTransmitMaxCars=64
 
 You can change the {{{fullScreen}}} setting in the sim from the Options/Graphics uncheking the full screen box.
 
-Save and close the file.
+Open *{{{app.ini}}}*.
+
+Change {{{session_info_period=1.000000}}} under {{{Telemetry}}} section. This makes the timer tick every second.
+
+Save and close the files.
 
 == iRTVO ===
 
