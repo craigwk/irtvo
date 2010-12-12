@@ -24,6 +24,8 @@ iRTVO uses Windows Presentation Foundation for its graphics. WPF on the other ha
 
 There are few things that needs to be changed in the sim to get the overlay working properly.
 
+=== app.ini ===
+
 Go to My documents/iRacing folder and open *{{{app.ini}}}*.
 
 Change the following lines under {{{Graphics}}} section:
@@ -35,7 +37,8 @@ serverTransmitMaxCars=64
 
 You can change the {{{fullScreen}}} setting in the sim from the Options/Graphics uncheking the full screen box.
 
-Open *{{{app.ini}}}*.
+=== core.ini ===
+Open *{{{core.ini}}}*.
 
 Change {{{session_info_period=1.000000}}} under {{{Telemetry}}} section. This makes the timer tick every second.
 
