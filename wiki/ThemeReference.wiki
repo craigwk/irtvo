@@ -1,0 +1,47 @@
+#summary All the available options for themes.
+#labels Phase-Deploy,Phase-Implementation,Featured
+
+This document explains all the options that are available for creating custom themes.
+
+= File structure =
+
+Same folder where iRTVO.exe is located is theme-folder. This folder contains one or more folders which are named after the theme they contain. These folders have settings.ini which describes the theme and multiple png-files to show the wanted graphics. Additionally folder can contain custom fonts (ttf-files) for the theme.
+
+== Example file structure ==
+
+{{{
+iRTVO.exe
+iWrapClient.dll
+themes\FIA Style\settings.ini
+themes\FIA Style\driver.png
+themes\FIA Style\laptime.png
+themes\FIA Style\results.png
+...
+themes\FIA Style\DejaVuSans.ttf
+themes\FIA Style\DejaVuSansMono.ttf
+themes\Nascar Style\settings.ini
+...
+}}}
+
+= settings.ini =
+
+Settings.ini is the only required file for theme to function. Settings.ini describes how and what the program should draw text on the overlay. 
+
+The file is a [http://en.wikipedia.org/wiki/INI_file regular ini-file] consisting of sections which are marked as `[SectionName]`. Each section contains key-value pairs `someproperty=something`.
+
+== Minimum settings.ini ==
+
+In settings.ini there are a few mandatory fields. All these locate under General section and are shown below.
+
+{{{
+[General]
+name=Theme name
+author=Me
+width=1280
+height=720
+}}}
+
+* `name` should be the same as the folder where settings.ini is located. For example `themes/Awesome Theme/settings.ini` must have Awesome Theme as it's name.
+* `author` it's your name
+* `width` width of the graphics files used
+* `height` height of the graphics files used
