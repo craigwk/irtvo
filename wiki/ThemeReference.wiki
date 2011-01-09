@@ -41,7 +41,128 @@ width=1280
 height=720
 }}}
 
-* `name` should be the same as the folder where settings.ini is located. For example `themes/Awesome Theme/settings.ini` must have Awesome Theme as it's name.
-* `author` it's your name
-* `width` width of the graphics files used
-* `height` height of the graphics files used
+  * `name` should be the same as the folder where settings.ini is located. For example `themes/Awesome Theme/settings.ini` must have Awesome Theme as it's name.
+  * `author` it's your name
+  * `width` width of the graphics files used
+  * `height` height of the graphics files used
+
+== Structure ==
+
+Themes are constructed from few objects (name tag, side panel, results listing, ticker, etc...). These objects have sub-objects like position, driver name, difference. 
+
+In settings.ini valid objects are:
+  * `Driver` shows the name of the driver on the screen
+  * `Sidepanel` shows the list of drivers
+  * `Results` shows the results of the session
+  * `Ticker` shows the scrolling ticker
+
+Each of these have following sub objects:
+  * `num` Shows the position or the number of the driver
+  * `name` Usually shows the name of the driver
+  * `diff` Shows the driver's difference (interval) to other drivers or driver's laptime
+  * `info` Shows additional information, like driver's club, car, lap record etc.
+
+=== Object properties ===
+
+|| *Property* || *Description* || *Default value* || *Example value* ||
+|| width || Object's width in pixels || 0 || 540 ||
+|| height^1^ || Object's height in pixels || 0 || 80 ||
+|| left || Object's top-left corner's distance from overlay's left border || 0 || 64 ||
+|| top || Object's top-left corner's distance from overlay's top border || 0 || 582 ||
+|| itemheight^2^ || Height of a single sub object group || 0 || 45 ||
+|| number^2^ || Number of sub objects to draw || 0 || 10 ||
+
+  * ^1^ Applies only to objects that have only one sub object group, like `Driver`.
+  * ^2^ Applies only to objects that hold multiple sub object groups, like `Sidepanel` and `Results`.
+
+=== Sub object properties ===
+
+|| *Property* || *Description* || *Default value* || *Example value* ||
+|| width || Object's width in pixels || 0 || 400 ||
+|| font || Font used to draw the text || Arial || DejaVuSans.ttf ||
+|| fontsize || Font size for the text || 0 || 34 ||
+|| fontcolor || Font color for the text || black || white ||
+|| fontbold || Font weight for the text || false || true ||
+|| fontitalic || Font style for the text || false || true ||
+|| align || Text alignment inside its borders || left || center ||
+|| left || Top-left corner's distance from parent object's left border || 0 || 120 ||
+|| top || Top-left corner's distance from parent object's top border || 0 || 0 ||
+|| text || Text formatting || {0} || Classification after {0} {1} ||
+
+=== Text property ===
+
+Text property select what information is shown on the overlay. Different types of sub objects have different data available.
+
+==== num ====
+
+|| *Value* || *Description* || *Example output* ||
+|| {0} || Position of the driver || 4 ||
+|| {1} || Car number of the driver || 22 ||
+
+==== name ====
+
+|| *Value* || *Description* || *Example output* ||
+|| {1} || Full name || Greger Huttu ||
+|| {2} || Shorter name || G Huttu ||
+|| {3} || Initials || GHU ||
+|| {4} || License || N/A ||
+|| {5} || Club || Finland ||
+|| {6} || Car || N/A ||
+|| {7} || Class || N/A ||
+|| {8} || Car number || 22 ||
+|| {9} || Fastest lap of the session || 1:23.456 ||
+|| {10} || Lap time of previous finished lap || 1:23.456 ||
+|| {11} || Current lap number || 10 ||
+|| {12} || Average speed of the fastest lap || 123.45 ||
+|| {13} || Average speed of the previous lap || 123.45 ||
+
+==== diff ====
+
+N/A
+
+==== info ====
+
+Same as in name.
+
+=== Example of a object and its sub objects ===
+
+{{{
+[Sidepanel]
+number=12
+left=72
+top=191
+width=230
+itemheight=32
+
+[Sidepanel-num]
+width=40
+font=DejaVuSans.ttf
+fontsize=22
+fontcolor=black
+fontbold=true
+align=center
+left=0
+top=0
+text={0}
+
+[Sidepanel-name]
+width=90
+font=DejaVuSansMono.ttf
+fontsize=20
+fontcolor=white
+fontbold=true
+align=center
+left=35
+top=0
+text={2}
+
+[Sidepanel-diff]
+width=100
+font=DejaVuSans.ttf
+fontsize=20
+fontcolor=white
+fontbold=true
+align=right
+left=115
+top=0
+}}}
