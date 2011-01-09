@@ -1,0 +1,7 @@
+#summary The most frequently asked questions.
+#labels Featured,Phase-Support,Phase-Deploy
+
+= Frequently Asked Questions=
+
+=== Q: Does the program work with replays? ===
+A: Currently it doesn't. This is because iRacing API doesn't output any data with replays. However the staff has told that it's on the list and will be implemented some day.
