@@ -1,5 +1,5 @@
 #summary All the available options for themes.
-#labels Phase-Deploy,Phase-Implementation,Featured
+#labels Documentation,Featured
 
 This document explains all the options that are available for creating custom themes.
 
