@@ -1,5 +1,5 @@
 #summary Quick summary how to get started.
-#labels Featured,Phase-Deploy
+#labels Featured,Documentation
 
 = Quick Start Guide =
 
