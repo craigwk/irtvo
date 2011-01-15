@@ -105,7 +105,7 @@ Text property select what information is shown on the overlay. Different types o
 || {1} || Full name || Greger Huttu ||
 || {2} || Shorter name || G Huttu ||
 || {3} || Initials || GHU ||
-|| {4} || License || N/A ||
+|| {4} || License || WC4.99 ||
 || {5} || Club || Finland ||
 || {6} || Car || N/A ||
 || {7} || Class || N/A ||
