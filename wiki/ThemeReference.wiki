@@ -48,32 +48,35 @@ height=720
 
 == Structure ==
 
-Themes are constructed from few objects (name tag, side panel, results listing, ticker, etc...). These objects have sub-objects like position, driver name, difference. 
+Themes are constructed from multiple objects (name tag, side panel, results listing, ticker, etc...). These objects have sub-objects like position, driver name, difference. Objects are invisible to user, they just contain the sub-objects and hold common information.
 
-In settings.ini valid objects are:
-  * `Driver` shows the name of the driver on the screen
-  * `Sidepanel` shows the list of drivers
-  * `Results` shows the results of the session
-  * `Ticker` shows the scrolling ticker
+In settings.ini valid objects are defined in General section in a comma separated list
+{{{
+overlays=driver,state,sidepanel
+images=driver,state,sidepanel
+buttons=driver,state,sidepanel,ticker
+tickers=ticker
+}}}
 
-Each of these have following sub objects:
-  * `num` Shows the position or the number of the driver
-  * `name` Usually shows the name of the driver
-  * `diff` Shows the driver's difference (interval) to other drivers or driver's laptime
-  * `info` Shows additional information, like driver's club, car, lap record etc.
+Sub-objects are defined in each of the objects own section
+{{{
+[Overlay-Driver]
+labels=num,name,diff
+}}}
 
 === Object properties ===
 
 || *Property* || *Description* || *Default value* || *Example value* ||
 || width || Object's width in pixels || 0 || 540 ||
-|| height^1^ || Object's height in pixels || 0 || 80 ||
+|| height || Object's height in pixels || 0 || 80 ||
 || left || Object's top-left corner's distance from overlay's left border || 0 || 64 ||
 || top || Object's top-left corner's distance from overlay's top border || 0 || 582 ||
-|| itemheight^2^ || Height of a single sub object group || 0 || 45 ||
-|| number^2^ || Number of sub objects to draw || 0 || 10 ||
+|| dataset || What kind of data is shown in subobjects || N/A || followed, sessionstate, standing ||
+|| zIndex || Objects position relative to other objects. Largest zIndex is on the top, smallest on the bottom || 0 || 100 ||
+|| itemheight^1^ || Height of a single sub object group || 0 || 45 ||
+|| number^1^ || Number of sub objects to draw || 0 || 10 ||
 
-  * ^1^ Applies only to objects that have only one sub object group, like `Driver`.
-  * ^2^ Applies only to objects that hold multiple sub object groups, like `Sidepanel` and `Results`.
+  * ^2^ Applies only to objects that have dataset as `standing`
 
 === Sub object properties ===
 
@@ -87,13 +90,13 @@ Each of these have following sub objects:
 || align || Text alignment inside its borders || left || center ||
 || left || Top-left corner's distance from parent object's left border || 0 || 120 ||
 || top || Top-left corner's distance from parent object's top border || 0 || 0 ||
-|| text || Text formatting || {0} || Classification after {0} {1} ||
+|| text || Text formatting || {0} || {position_ord} ||
 
 === Text property ===
 
-Text property select what information is shown on the overlay. Different types of sub objects have different data available.
+Text property select what information is shown on the overlay. Different datasets have different data available.
 
-==== num ====
+==== followed ====
 
 || *Value* || *Description* || *Example output* ||
 || {0} || Position of the driver || 4 ||
@@ -102,67 +105,79 @@ Text property select what information is shown on the overlay. Different types o
 ==== name ====
 
 || *Value* || *Description* || *Example output* ||
-|| {1} || Full name || Greger Huttu ||
-|| {2} || Shorter name || G Huttu ||
-|| {3} || Initials || GHU ||
-|| {4} || License || WC4.99 ||
-|| {5} || Club || Finland ||
-|| {6} || Car || N/A ||
-|| {7} || Class || N/A ||
-|| {8} || Car number || 22 ||
-|| {9} || Fastest lap of the session || 1:23.456 ||
-|| {10} || Lap time of previous finished lap || 1:23.456 ||
-|| {11} || Current lap number || 10 ||
-|| {12} || Average speed of the fastest lap || 123.45 ||
-|| {13} || Average speed of the previous lap || 123.45 ||
+|| {fullname} || Full name || Greger Huttu ||
+|| {shortname} || Shorter name || G Huttu ||
+|| {initials} || Initials || GHU ||
+|| {license} || License || WC4.99 ||
+|| {club} || Club || Finland ||
+|| {car} || Car || N/A ||
+|| {class} || Class || N/A ||
+|| {carnum} || Car number || 22 ||
+|| {fastlap} || Fastest lap of the session || 1:23.456 ||
+|| {prevlap} || Lap time of previous finished lap || 1:23.456 ||
+|| {curlap}|| Lap time  of the current unfinished lap || 1:23.456 ||
+|| {lapnum} || Current lap number || 10 ||
+|| {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 ||
+|| {speedfast_kph} || Average speed of the fastest lap in kilometers per hour || 123.45 ||
+|| {speedlast_mph} || Average speed of the previous lap in miles per hour || 123.45 ||
+|| {speedlast_kph} || Average speed of the previous lap in kilometers per hour || 123.45 ||
+|| {position} || Current position || 10 ||
+|| {position_ord} || Current position in english ordinal || 3rd ||
+|| {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || 10 ||
 
-==== diff ====
+==== session state ====
 
-N/A
+|| *Value* || *Description* || *Example output* ||
+|| {lapstotal} || Total laps in session || 32 ||
+|| {lapscompleted} || Laps completed by the leader || 20 ||
+|| {lapsremaining} || Laps remaining in session || 12 ||
+|| {timetotal} || Total elapsed time in session || 30:00 ||
+|| {timepassed} || Total elapsed time in session || 12:33 ||
+|| {timeremaining} || Time remaining in session || 17:27 ||
 
-==== info ====
-
-Same as in name.
 
 === Example of a object and its sub objects ===
 
 {{{
-[Sidepanel]
-number=12
-left=72
-top=191
-width=230
-itemheight=32
+[Overlay-Driver]
+width=540
+height=80
+left=64
+top=582
+zIndex=100
+dataset=followed
+labels=num,name,diff
 
-[Sidepanel-num]
-width=40
+[Overlay-Driver-num]
+width=50
 font=DejaVuSans.ttf
-fontsize=22
-fontcolor=black
-fontbold=true
-align=center
-left=0
-top=0
-text={0}
-
-[Sidepanel-name]
-width=90
-font=DejaVuSansMono.ttf
-fontsize=20
+fontsize=24
 fontcolor=white
 fontbold=true
-align=center
-left=35
-top=0
-text={2}
+align=left
+left=70
+top=8
+text={position_ord}
 
-[Sidepanel-diff]
-width=100
+[Overlay-Driver-name]
+width=600
+font=DejaVuSans.ttf
+fontsize=30
+fontcolor=white
+fontbold=false
+align=left
+left=130
+top=3
+text={fullname}
+
+[Overlay-Driver-diff]
+width=120
 font=DejaVuSans.ttf
 fontsize=20
 fontcolor=white
 fontbold=true
 align=right
-left=115
-top=0
+left=28
+top=50
+text={fastlap}
 }}}
