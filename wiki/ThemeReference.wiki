@@ -99,12 +99,6 @@ Text property select what information is shown on the overlay. Different dataset
 ==== followed ====
 
 || *Value* || *Description* || *Example output* ||
-|| {0} || Position of the driver || 4 ||
-|| {1} || Car number of the driver || 22 ||
-
-==== name ====
-
-|| *Value* || *Description* || *Example output* ||
 || {fullname} || Full name || Greger Huttu ||
 || {shortname} || Shorter name || G Huttu ||
 || {initials} || Initials || GHU ||
