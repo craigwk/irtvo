@@ -1,11 +1,16 @@
 #summary All available theme settings.
 #labels Documentation,Featured
 
+<h1>Theme Reference</h1>
+
+<h3>Table of Contents</h3>
+<wiki:toc max_depth="3" />
+
 This document explains all the options that are available for creating custom themes. These settings are stored in `settings.ini`
 
 Items marked in *bold* are mandatory.
 
-= {{{[General]}}} =
+= {{{General}}} =
 
 General settings
 
@@ -20,7 +25,7 @@ General settings
 || *buttons* || Comma separated list of buttons || driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
 || switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default false ||
 
-= {{{[Translation]}}} =
+= {{{Translation}}} =
 
 Program uses a few natural language words in its text fields. These words can be changed in Translation-section.
 
@@ -40,7 +45,7 @@ Program uses a few natural language words in its text fields. These words can be
 ||finishing|| || || ||
 ||leader|| ||-.--||Text shown in leaders {interval}||
 
-= {{{[Multiclass]}}} =
+= {{{Multiclass}}} =
 
 In this section you can change car names. See [ThemeReference#text].
 
@@ -53,7 +58,7 @@ radical\sr8=Radical SR8
 
 = Overlays =
 
-Each of the overlays defined in General-section must have corresponding {{{Overlay-overlayname}}}-section. For example if {{{overlays=driver,sidepanel}}} then there must be {{{[Overlay-driver]}}} and {{{[Overlay-sidepanel]}}}
+Each of the overlays defined in General-section must have corresponding {{{Overlay-overlayname}}}-section. For example if {{{overlays=driver,sidepanel}}} then there must be {{{[Overlay-driver]}}} and {{{[Overlay-sidepanel]}}}.
 
 || *Name* || *Description* || *Example value* || *Note* ||
 || *width* || Width of the overlay || 540 || ||
@@ -94,7 +99,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {initials} || Initials || GHU || ||
 || {license} || License || WC4.99 || ||
 || {club} || Club || Finland || ||
-|| {car} || Car || Radical SR8 || See [ThemeReference#[Multiclass]] ||
+|| {car} || Car || Radical SR8 || See [ThemeReference#Multiclass] ||
 || {class} || Class || N/A || ||
 || {carnum} || Car number || 22 || ||
 || {fastlap} || Fastest lap of the session || 1:23.456 || ||
@@ -121,7 +126,7 @@ Text property select what information is shown on the overlay. Different dataset
 
 = Images =
 
-Each of the images defined in General-section must have corresponding {{{Image-overlayname}}}-section. For example if {{{images=driver,sidepanel}}} then there must be {{{[Image-driver]}}} and {{{[Image-sidepanel]}}}
+Each of the images defined in General-section must have corresponding {{{Image-imagename}}}-section. For example if {{{images=driver,sidepanel}}} then there must be {{{[Image-driver]}}} and {{{[Image-sidepanel]}}}.
 
 || *Value* || *Description* || *Example output* || * Note* ||
 || *filename* || Filename om the image in theme folder || lights-off.png || Available image formats are BMP, JPEG, PNG, TIFF, Windows Media Photo, GIF and ICON. ||
@@ -131,4 +136,23 @@ Each of the images defined in General-section must have corresponding {{{Image-o
 
 = Tickers =
 
+Each of the tickers defined in General-section must have corresponding {{{Ticker-tickername}}}-section. For example if {{{tickers=standings}}} then there must be {{{[Ticker-standings]}}}.
+
+Tickers have the same properties as overlays. See [ThemeReference#Overlays]. There are few additional fields:
+
+|| *Value* || *Description* || *Example output* || * Note* ||
+|| fillvertical || Sets the direction which labels are stacked. When `true` it creates multi row ticker. `false` is the normal behavior. || false || Valid values are `true` or `false` ||
+
 = Buttons =
+
+Each of the buttons defined in General-section must have corresponding {{{Button-buttonname}}}-section. For example if {{{buttons=sidepanel,ticker}}} then there must be {{{[Button-sidepanel]}}} and {{{[Button-ticker]}}}.
+
+Buttons show and hide overlays, images and tickers. Each button can do any combination of these.
+
+|| *Value* || *Description* || *Example output* || * Note* ||
+|| text || Sets the text shown in the button. || Side panel || ||
+|| show || Comma separated list of items that will be visible after button press || Overlay-sidepanel,Image-sidepanel || Valid values are any of the overlays, images or tickers defined in `General`. ^1^ ||
+|| hide || Comma separated list of items that will be hidden after button press || Ticker-standings || See `show` ||
+|| toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
+
+^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `itemcount` is 10.
