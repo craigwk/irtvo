@@ -1,177 +1,134 @@
-#summary All the available options for themes.
+#summary All available theme settings.
 #labels Documentation,Featured
 
-This document explains all the options that are available for creating custom themes.
+This document explains all the options that are available for creating custom themes. These settings are stored in `settings.ini`
 
-= File structure =
+Items marked in *bold* are mandatory.
 
-Same folder where iRTVO.exe is located is theme-folder. This folder contains one or more folders which are named after the theme they contain. These folders have settings.ini which describes the theme and multiple png-files to show the wanted graphics. Additionally folder can contain custom fonts (ttf-files) for the theme.
+= {{{[General]}}} =
 
-== Example file structure ==
+General settings
+
+|| *Name* || *Description* || *Example value* || *Note* ||
+|| *name* || Name of the theme || Example theme || Has to be the same as the folder name ||
+|| *author* || Author of the theme || Jari Y || ||
+|| *width* || Theme width in pixels || 1280 || ||
+|| *height* || Theme height in pixels || 720 || ||
+|| *overlays* || Comma separated list of text overlays || driver,sessionstate,sidepanel || See [ThemeReference#Overlays] ||
+|| *images* || Comma separated list of images || logo,sidepanel || See [ThemeReference#Images] ||
+|| *tickers* || Comma separated list of tickers || ticker || See [ThemeReference#Tickers] ||
+|| *buttons* || Comma separated list of buttons || driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
+|| switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default false ||
+
+= {{{[Translation]}}} =
+
+Program uses a few natural language words in its text fields. These words can be changed in Translation-section.
+
+|| *Name* || *Description* || *Example value* || *Note* ||
+||lap|| || || ||
+||laps|| || || ||
+||minutes|| || || ||
+||of|| || || ||
+||remaining|| ||to go|| ||
+||race|| || || ||
+||qualify|| || || ||
+||practice|| || || ||
+||out|| ||retired||Text shown in user's {interval} when he has quitted||
+||gridding|| || || ||
+||pacelap|| || || ||
+||finallap|| || || ||
+||finishing|| || || ||
+||leader|| ||-.--||Text shown in leaders {interval}||
+
+= {{{[Multiclass]}}} =
+
+In this section you can change car names. See [ThemeReference#text].
+
+Format is {{{carname="Car name"}}}. For example:
 
 {{{
-iRTVO.exe
-iWrapClient.dll
-themes\FIA Style\settings.ini
-themes\FIA Style\driver.png
-themes\FIA Style\laptime.png
-themes\FIA Style\results.png
-...
-themes\FIA Style\DejaVuSans.ttf
-themes\FIA Style\DejaVuSansMono.ttf
-themes\Nascar Style\settings.ini
-...
+c6r=Corvette C6R
+radical\sr8=Radical SR8
 }}}
 
-= settings.ini =
+= Overlays =
 
-Settings.ini is the only required file for theme to function. Settings.ini describes how and what the program should draw text on the overlay. 
+Each of the overlays defined in General-section must have corresponding {{{Overlay-overlayname}}}-section. For example if {{{overlays=driver,sidepanel}}} then there must be {{{[Overlay-driver]}}} and {{{[Overlay-sidepanel]}}}
 
-The file is a [http://en.wikipedia.org/wiki/INI_file regular ini-file] consisting of sections which are marked as `[SectionName]`. Each section contains key-value pairs `someproperty=something`.
+|| *Name* || *Description* || *Example value* || *Note* ||
+|| *width* || Width of the overlay || 540 || ||
+|| *height* || Heigth of the overlay || 80 || ||
+|| *left* || Margin from the left border of the window || 64 || ||
+|| *top* || Margin from the top border of the window || 582 || ||
+|| *zIndex* || Stacking order of all items in the theme || 100 || Item with largest zIndex will be shown top most and vice versa ||
+|| *dataset* || The kind of information shown on the text items || followed || Valid values are `followed`, `standing`, `sessionstate` || 
+|| *labels* || Comma sparated list of text labels shown inside of the overlay || num,name,diff || ||
+|| itemheight || Line height of stanging list || 45 || Applies only to objects that have dataset as `standing` ||
+|| number || Number of items to draw || 10 || Applies only to objects that have dataset as `standing` ||
 
-== Minimum settings.ini ==
+== Overlay labels ==
 
-In settings.ini there are a few mandatory fields. All these locate under General section and are shown below.
+Each of the labels defined in overlay's labels must be defined in its own section. For example {{{labels=name,diff}}} in {{{[Overlay-driver]}}} must then have {{{[Overlay-driver-name]}}} and {{{[Overlay-driver-diff]}}}.
 
-{{{
-[General]
-name=Theme name
-author=Me
-width=1280
-height=720
-}}}
+|| *Name* || *Description* || *Example value* || *Note* ||
+|| *width* || Object's width in pixels || 400 ||  ||
+|| *fontsize* || Font size for the text || 34 ||  ||
+|| *text* || Text formatting || {position_ord} || See [ThemeReference#text] ||
+|| font || Font used to draw the text || Arial || Can be filename of a font in theme directory or a font installed in Windows ||
+|| fontcolor || Font color for the text || black || [http://samples.msdn.microsoft.com/workshop/samples/author/dhtml/colors/ColorTable.htm See all possible colors] ||
+|| fontbold || Font weight for the text || false || true or false ||
+|| fontitalic || Font style for the text || `true` or `false` || ||
+|| align || Text alignment inside its borders || left || `left`, `right` or `center` ||
+|| left || Top-left corner's distance from parent object's left border || 0 || ||
+|| top || Top-left corner's distance from parent object's top border || 0 || ||
 
-  * `name` should be the same as the folder where settings.ini is located. For example `themes/Awesome Theme/settings.ini` must have Awesome Theme as it's name.
-  * `author` it's your name
-  * `width` width of the graphics files used
-  * `height` height of the graphics files used
-
-== Structure ==
-
-Themes are constructed from multiple objects (name tag, side panel, results listing, ticker, etc...). These objects have sub-objects like position, driver name, difference. Objects are invisible to user, they just contain the sub-objects and hold common information.
-
-In settings.ini valid objects are defined in General section in a comma separated list
-{{{
-overlays=driver,state,sidepanel
-images=driver,state,sidepanel
-buttons=driver,state,sidepanel,ticker
-tickers=ticker
-}}}
-
-Sub-objects are defined in each of the objects own section
-{{{
-[Overlay-Driver]
-labels=num,name,diff
-}}}
-
-=== Object properties ===
-
-|| *Property* || *Description* || *Default value* || *Example value* ||
-|| width || Object's width in pixels || 0 || 540 ||
-|| height || Object's height in pixels || 0 || 80 ||
-|| left || Object's top-left corner's distance from overlay's left border || 0 || 64 ||
-|| top || Object's top-left corner's distance from overlay's top border || 0 || 582 ||
-|| dataset || What kind of data is shown in subobjects || N/A || followed, sessionstate, standing ||
-|| zIndex || Objects position relative to other objects. Largest zIndex is on the top, smallest on the bottom || 0 || 100 ||
-|| itemheight^1^ || Height of a single sub object group || 0 || 45 ||
-|| number^1^ || Number of sub objects to draw || 0 || 10 ||
-
-  * ^2^ Applies only to objects that have dataset as `standing`
-
-=== Sub object properties ===
-
-|| *Property* || *Description* || *Default value* || *Example value* ||
-|| width || Object's width in pixels || 0 || 400 ||
-|| font || Font used to draw the text || Arial || DejaVuSans.ttf ||
-|| fontsize || Font size for the text || 0 || 34 ||
-|| fontcolor || Font color for the text || black || white ||
-|| fontbold || Font weight for the text || false || true ||
-|| fontitalic || Font style for the text || false || true ||
-|| align || Text alignment inside its borders || left || center ||
-|| left || Top-left corner's distance from parent object's left border || 0 || 120 ||
-|| top || Top-left corner's distance from parent object's top border || 0 || 0 ||
-|| text || Text formatting || {0} || {position_ord} ||
-
-=== Text property ===
+=== {{{text}}} ===
 
 Text property select what information is shown on the overlay. Different datasets have different data available.
 
-==== followed ====
+==== Dataset: `followed` or `standing` ====
 
-|| *Value* || *Description* || *Example output* ||
-|| {fullname} || Full name || Greger Huttu ||
-|| {shortname} || Shorter name || G Huttu ||
-|| {initials} || Initials || GHU ||
-|| {license} || License || WC4.99 ||
-|| {club} || Club || Finland ||
-|| {car} || Car || N/A ||
-|| {class} || Class || N/A ||
-|| {carnum} || Car number || 22 ||
-|| {fastlap} || Fastest lap of the session || 1:23.456 ||
-|| {prevlap} || Lap time of previous finished lap || 1:23.456 ||
-|| {curlap}|| Lap time  of the current unfinished lap || 1:23.456 ||
+|| *Value* || *Description* || *Example output* || *Note* ||
+|| {fullname} || Full name || Greger Huttu || ||
+|| {shortname} || Shorter name || G Huttu || ||
+|| {initials} || Initials || GHU || ||
+|| {license} || License || WC4.99 || ||
+|| {club} || Club || Finland || ||
+|| {car} || Car || Radical SR8 || See [ThemeReference#[Multiclass]] ||
+|| {class} || Class || N/A || ||
+|| {carnum} || Car number || 22 || ||
+|| {fastlap} || Fastest lap of the session || 1:23.456 || ||
+|| {prevlap} || Lap time of previous finished lap || 1:23.456 || ||
+|| {curlap}|| Lap time  of the current unfinished lap || 1:23.456 || ||
 || {lapnum} || Current lap number || 10 ||
-|| {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 ||
-|| {speedfast_kph} || Average speed of the fastest lap in kilometers per hour || 123.45 ||
-|| {speedlast_mph} || Average speed of the previous lap in miles per hour || 123.45 ||
-|| {speedlast_kph} || Average speed of the previous lap in kilometers per hour || 123.45 ||
-|| {position} || Current position || 10 ||
-|| {position_ord} || Current position in english ordinal || 3rd ||
-|| {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || 10 ||
+|| {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 || ||
+|| {speedfast_kph} || Average speed of the fastest lap in kilometers per hour || 123.45 || ||
+|| {speedlast_mph} || Average speed of the previous lap in miles per hour || 123.45 || ||
+|| {speedlast_kph} || Average speed of the previous lap in kilometers per hour || 123.45 || ||
+|| {position} || Current position || 10 || ||
+|| {position_ord} || Current position in english ordinal || 3rd || ||
+|| {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
 
-==== session state ====
+==== Dataset: `sessionstate` ====
 
-|| *Value* || *Description* || *Example output* ||
-|| {lapstotal} || Total laps in session || 32 ||
-|| {lapscompleted} || Laps completed by the leader || 20 ||
-|| {lapsremaining} || Laps remaining in session || 12 ||
-|| {timetotal} || Total elapsed time in session || 30:00 ||
-|| {timepassed} || Total elapsed time in session || 12:33 ||
-|| {timeremaining} || Time remaining in session || 17:27 ||
+|| *Value* || *Description* || *Example output* || * Note* ||
+|| {lapstotal} || Total laps in session || 32 || ||
+|| {lapscompleted} || Laps completed by the leader || 20 || ||
+|| {lapsremaining} || Laps remaining in session || 12 || ||
+|| {timetotal} || Total elapsed time in session || 30:00 || ||
+|| {timepassed} || Total elapsed time in session || 12:33 || ||
+|| {timeremaining} || Time remaining in session || 17:27 || ||
 
+= Images =
 
-=== Example of a object and its sub objects ===
+Each of the images defined in General-section must have corresponding {{{Image-overlayname}}}-section. For example if {{{images=driver,sidepanel}}} then there must be {{{[Image-driver]}}} and {{{[Image-sidepanel]}}}
 
-{{{
-[Overlay-Driver]
-width=540
-height=80
-left=64
-top=582
-zIndex=100
-dataset=followed
-labels=num,name,diff
+|| *Value* || *Description* || *Example output* || * Note* ||
+|| *filename* || Filename om the image in theme folder || lights-off.png || Available image formats are BMP, JPEG, PNG, TIFF, Windows Media Photo, GIF and ICON. ||
+|| *zIndex* || Stacking order of all items in the theme || 10 || Item with largest zIndex will be shown top most and vice versa ||
+|| flag || sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
+|| light || sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
 
-[Overlay-Driver-num]
-width=50
-font=DejaVuSans.ttf
-fontsize=24
-fontcolor=white
-fontbold=true
-align=left
-left=70
-top=8
-text={position_ord}
+= Tickers =
 
-[Overlay-Driver-name]
-width=600
-font=DejaVuSans.ttf
-fontsize=30
-fontcolor=white
-fontbold=false
-align=left
-left=130
-top=3
-text={fullname}
-
-[Overlay-Driver-diff]
-width=120
-font=DejaVuSans.ttf
-fontsize=20
-fontcolor=white
-fontbold=true
-align=right
-left=28
-top=50
-text={fastlap}
-}}}
+= Buttons =
