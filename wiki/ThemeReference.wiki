@@ -23,7 +23,7 @@ General settings
 || *images* || Comma separated list of images || logo,sidepanel || See [ThemeReference#Images] ||
 || *tickers* || Comma separated list of tickers || ticker || See [ThemeReference#Tickers] ||
 || *buttons* || Comma separated list of buttons || driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
-|| switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default false ||
+|| switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default `false` ||
 
 = {{{Translation}}} =
 
@@ -68,8 +68,8 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || *zIndex* || Stacking order of all items in the theme || 100 || Item with largest zIndex will be shown top most and vice versa ||
 || *dataset* || The kind of information shown on the text items || followed || Valid values are `followed`, `standing`, `sessionstate` || 
 || *labels* || Comma sparated list of text labels shown inside of the overlay || num,name,diff || ||
-|| itemheight || Line height of stanging list || 45 || Applies only to objects that have dataset as `standing` ||
-|| number || Number of items to draw || 10 || Applies only to objects that have dataset as `standing` ||
+|| itemheight || Line height of stanging list || 45 || Applies only to overlays that have dataset as `standing` ||
+|| number || Number of items to draw || 10 || Applies only to overlays that have dataset as `standing` ||
 
 == Overlay labels ==
 
@@ -155,4 +155,4 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 || hide || Comma separated list of items that will be hidden after button press || Ticker-standings || See `show` ||
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
 
-^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `itemcount` is 10.
+^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `number` is 10.
