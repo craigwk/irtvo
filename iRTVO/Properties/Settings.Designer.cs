@@ -182,24 +182,12 @@ namespace iRTVO.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int MainWindowWidth {
+        public int speedUnit {
             get {
-                return ((int)(this["MainWindowWidth"]));
+                return ((int)(this["speedUnit"]));
             }
             set {
-                this["MainWindowWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int MainWindowHeight {
-            get {
-                return ((int)(this["MainWindowHeight"]));
-            }
-            set {
-                this["MainWindowHeight"] = value;
+                this["speedUnit"] = value;
             }
         }
     }

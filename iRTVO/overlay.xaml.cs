@@ -31,7 +31,6 @@ using System.Threading;
 using System.Windows.Threading;
 using System.IO;
 using System.Windows.Interop;
-using System.Windows.Media.Animation;
 
 namespace iRTVO
 {
@@ -46,16 +45,10 @@ namespace iRTVO
         // API thread
         Thread thApi;
 
-        // Objects & labels
-        Canvas[] objects;
-        Label[][] labels;
-        Image[] images;
-        Canvas[] tickers;
-        Label[][] tickerLabels;
-        StackPanel[] tickerStackpanels;
-        StackPanel[][] tickerRowpanels;
+        // theme
+        Theme theme;
 
-        int updateMs;
+        private Image[] themeImages = new Image[Theme.filenames.Length];
 
         public Overlay()
         {
@@ -88,6 +81,7 @@ namespace iRTVO
 
             // overlay update timer
             overlayUpdateTimer.Tick += new EventHandler(overlayUpdate);
+            overlayUpdateTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)Math.Round(1000/(double)Properties.Settings.Default.UpdateFrequency));
             overlayUpdateTimer.Start();
 
             resizeOverlay(overlay.Width, overlay.Height);
@@ -95,98 +89,16 @@ namespace iRTVO
 
         private void loadTheme(string themeName)
         {
-            updateMs = (int)Math.Round(1000 / (double)Properties.Settings.Default.UpdateFrequency);
-            overlayUpdateTimer.Interval = new TimeSpan(0, 0, 0, 0, updateMs);
+            overlayUpdateTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)Math.Round(1000 / (double)Properties.Settings.Default.UpdateFrequency));
 
             // disable overlay update
             SharedData.runOverlay = false;
 
-            SharedData.theme = new Theme(themeName);
+            theme = new Theme(themeName);
 
             canvas.Children.Clear();
-
-            objects = new Canvas[SharedData.theme.objects.Length];
-            labels = new Label[SharedData.theme.objects.Length][];
-            images = new Image[SharedData.theme.images.Length];
-            tickers = new Canvas[SharedData.theme.tickers.Length];
-            tickerLabels = new Label[SharedData.theme.tickers.Length][];
-            tickerStackpanels = new StackPanel[SharedData.theme.tickers.Length];
-            tickerRowpanels = new StackPanel[SharedData.theme.tickers.Length][];
-
-            SharedData.lastPage = new Boolean[SharedData.theme.objects.Length];
-
-            // create images
-            for (int i = 0; i < SharedData.theme.images.Length; i++)
-            {
-                images[i] = new Image();
-                loadImage(images[i], SharedData.theme.images[i].filename);
-                images[i].Width = SharedData.theme.width;
-                images[i].Height = SharedData.theme.height;
-
-                canvas.Children.Add(images[i]);
-                Canvas.SetZIndex(images[i], SharedData.theme.images[i].zIndex);
-            }
-
-            // create objects
-            for (int i = 0; i < SharedData.theme.objects.Length; i++)
-            {
-                // init canvas
-                objects[i] = new Canvas();
-                objects[i].Margin = new Thickness(SharedData.theme.objects[i].left, SharedData.theme.objects[i].top, 0, 0);
-                objects[i].Width = SharedData.theme.objects[i].width;
-                objects[i].Height = SharedData.theme.objects[i].height;
-                objects[i].ClipToBounds = true;
-
-                // create labels
-                if (SharedData.theme.objects[i].dataset == Theme.dataset.standing)
-                {
-                    labels[i] = new Label[SharedData.theme.objects[i].labels.Length * SharedData.theme.objects[i].itemCount];
-
-                    for (int j = 0; j < SharedData.theme.objects[i].labels.Length; j++) // items (vertical)
-                    {
-                        // fix top preaddition
-                        SharedData.theme.objects[i].labels[j].top -= SharedData.theme.objects[i].itemHeight;
-                        for (int k = 0; k < SharedData.theme.objects[i].itemCount; k++) // subitems (horizontal)
-                        {
-                            SharedData.theme.objects[i].labels[j].top += SharedData.theme.objects[i].itemHeight;
-                            labels[i][(j * SharedData.theme.objects[i].itemCount) + k] = DrawLabel(SharedData.theme.objects[i].labels[j]);
-                            objects[i].Children.Add(labels[i][(j * SharedData.theme.objects[i].itemCount) + k]);
-                        }
-                    }
-                }
-                else
-                {
-                    labels[i] = new Label[SharedData.theme.objects[i].labels.Length];
-
-                    for (int j = 0; j < SharedData.theme.objects[i].labels.Length; j++)
-                    {
-                        labels[i][j] = DrawLabel(SharedData.theme.objects[i].labels[j]);
-                        objects[i].Children.Add(labels[i][j]);
-                    }
-
-                }
-
-                canvas.Children.Add(objects[i]);
-                Canvas.SetZIndex(objects[i], SharedData.theme.objects[i].zIndex);
-            }
-
-            // create tickers
-            for (int i = 0; i < SharedData.theme.tickers.Length; i++)
-            {
-                // init canvas
-                tickers[i] = new Canvas();
-                tickers[i].Margin = new Thickness(SharedData.theme.tickers[i].left, SharedData.theme.tickers[i].top, 0, 0);
-                tickers[i].Width = SharedData.theme.tickers[i].width;
-                tickers[i].Height = SharedData.theme.tickers[i].height;
-                tickers[i].ClipToBounds = true;
-
-                tickerStackpanels[i] = new StackPanel();
-
-                canvas.Children.Add(tickers[i]);
-                Canvas.SetZIndex(tickers[i], SharedData.theme.tickers[i].zIndex);
-            }
-
-            /*
+            
+            // load images
             for(int i = 0; i < themeImages.Length; i++) {
                 themeImages[i] = new Image();
                 loadImage(themeImages[i], Theme.filenames[i]);
@@ -198,6 +110,7 @@ namespace iRTVO
 
             // show main image
             themeImages[(int)Theme.overlayTypes.main].Visibility = System.Windows.Visibility.Visible;
+            Canvas.SetZIndex(themeImages[(int)Theme.overlayTypes.main], 1000);
 
             // create sidepanel canvas
             sidepanel = new Canvas();
@@ -339,7 +252,6 @@ namespace iRTVO
             // create lap time
             laptimeText = DrawLabel(canvas, theme.laptimeText);
             canvas.Children.Add(laptimeText);
-            */
 
             // enable overlay update
            // SharedData.runOverlay = true;
@@ -347,8 +259,8 @@ namespace iRTVO
 
         private void loadImage(Image img, string filename)
         {
-            if (File.Exists(@Directory.GetCurrentDirectory() + "\\" + SharedData.theme.path + "\\" + filename))
-                img.Source = new BitmapImage(new Uri(@Directory.GetCurrentDirectory() + "\\" + SharedData.theme.path + "\\" + filename));
+            if (File.Exists(@Directory.GetCurrentDirectory() + "\\" + theme.path + "\\" + filename))
+                img.Source = new BitmapImage(new Uri(@Directory.GetCurrentDirectory() + "\\" + theme.path + "\\" + filename));
         }
 
         private Label DrawLabel(Canvas canvas, Theme.LabelProperties prop)
@@ -362,10 +274,10 @@ namespace iRTVO
             label.FontFamily = prop.font;
             label.VerticalContentAlignment = System.Windows.VerticalAlignment.Top;
 
-            label.FontWeight = prop.fontBold;
-            label.FontStyle = prop.fontItalic;
+            label.FontWeight = prop.FontBold;
+            label.FontStyle = prop.FontItalic;
 
-            label.HorizontalContentAlignment = prop.textAlign;
+            label.HorizontalContentAlignment = prop.TextAlign;
 
             label.Padding = new Thickness(0);
 
@@ -394,10 +306,10 @@ namespace iRTVO
             label.FontFamily = prop.font;
             label.VerticalContentAlignment = System.Windows.VerticalAlignment.Top;
 
-            label.FontWeight = prop.fontBold;
-            label.FontStyle = prop.fontItalic;
+            label.FontWeight = prop.FontBold;
+            label.FontStyle = prop.FontItalic;
 
-            label.HorizontalContentAlignment = prop.textAlign;
+            label.HorizontalContentAlignment = prop.TextAlign;
 
             label.Padding = new Thickness(0);
 
@@ -417,7 +329,7 @@ namespace iRTVO
 
         private void Size_Changed(object sender, SizeChangedEventArgs e)
         {
-            if (SharedData.theme != null)
+            if (theme != null)
                 resizeOverlay(e.NewSize.Width, e.NewSize.Height);
         }
 

@@ -121,6 +121,16 @@ namespace iRTVO
         public static Mutex trackMutex;
         public static TrackInfo track = new TrackInfo();
 
+        // Overlay states
+        public static Boolean[] visible = new Boolean[Enum.GetValues(typeof(overlayObjects)).Length];
+        public static sidepanelTypes sidepanelType = sidepanelTypes.leader;
+        public static Boolean requestRefresh = false;
+
+        // Result state
+        public static int resultPage = -1;
+        public static Boolean resultLastPage = false;
+        public static int resultSession = -1;
+
         // API state
         public static Boolean runApi = true;
         public static Boolean runOverlay = false;
@@ -130,17 +140,7 @@ namespace iRTVO
         public static DateTime startlights;
 
         // Overlay performance timers
-        public static Stack<float> overlayFPSstack = new Stack<float>();
-        public static Stack<float> overlayEffectiveFPSstack = new Stack<float>();
-
-        // Theme
-        public static Theme theme;
-        public static Boolean refreshButtons = false;
-        public static Boolean refreshTheme = false;
-        public static int overlaySession = 0;
-        public static Boolean[] lastPage;
-
-        // allow retirement
-        public static Boolean allowRetire = false;
+        public static TimeSpan overlayEffectiveFPS;
+        public static TimeSpan overlayFPS;
     }
 }
