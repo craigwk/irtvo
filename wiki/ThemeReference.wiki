@@ -44,6 +44,7 @@ Program uses a few natural language words in its text fields. These words can be
 ||finallap|| || || ||
 ||finishing|| || || ||
 ||leader|| ||-.--||Text shown in leaders {interval}||
+||invalid|| || -.-- ||Text shown in {curlap} when last lap was invalid (incident or connection issue) ||
 
 = {{{Multiclass}}} =
 
@@ -128,6 +129,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {timetotal} || Total elapsed time in session || 30:00 || ||
 || {timepassed} || Total elapsed time in session || 12:33 || ||
 || {timeremaining} || Time remaining in session || 17:27 || ||
+|| {lapcounter} || Lap counter including transition to "x laps to go" and "final lap" || 12 / 23 || Works just like in the version 1.0 ||
 
 = Images =
 
