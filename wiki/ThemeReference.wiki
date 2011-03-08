@@ -10,7 +10,7 @@ This document explains all the options that are available for creating custom th
 
 Items marked in *bold* are mandatory.
 
-= {{{General}}} =
+= General =
 
 General settings
 
@@ -25,7 +25,7 @@ General settings
 || *buttons* || Comma separated list of buttons || driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
 || switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default `false` ||
 
-= {{{Translation}}} =
+= Translation =
 
 Program uses a few natural language words in its text fields. These words can be changed in Translation-section.
 
@@ -46,7 +46,7 @@ Program uses a few natural language words in its text fields. These words can be
 ||leader|| ||-.--||Text shown in leaders {interval}||
 ||invalid|| || -.-- ||Text shown in {curlap} when last lap was invalid (incident or connection issue) ||
 
-= {{{Multiclass}}} =
+= Multiclass =
 
 In this section you can change car names. See [ThemeReference#text].
 
@@ -93,7 +93,7 @@ Each of the labels defined in overlay's labels must be defined in its own sectio
 
 ^2^ For example `dataset=followed` and the driver followed is on 3rd place. The using `offset=-1` would show data of the driver on 2nd place and similarly `offset=3` would show data of 5th place driver.
 
-=== {{{text}}} ===
+=== Text ===
 
 Text property select what information is shown on the overlay. Different datasets have different data available.
 
@@ -119,6 +119,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {position} || Current position || 10 || ||
 || {position_ord} || Current position in english ordinal || 3rd || ||
 || {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
+|| {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
 
 ==== Dataset: `sessionstate` ====
 
@@ -163,3 +164,17 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
 
 ^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `number` is 10.
+
+= External Data =
+
+External data is stored in a [http://en.wikipedia.org/wiki/Comma-separated_values CSV-file] called data.csv which is located at the theme folder. This file is semicolon separated table where first column is the driver's customer id.
+
+== Example file ==
+{{{
+35698;Finland;Oulu;Team Trellet
+12345;USA;Boston;Team USA
+}}}
+
+Now `{external:0}` would become `Finland` or `USA` and `{external:2}` `Team Trellet` or `Team USA` respectively. 
+
+If the CSV file doesn't have row for the selected driver the external fields will be ignored.
