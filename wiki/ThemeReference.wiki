@@ -46,17 +46,6 @@ Program uses a few natural language words in its text fields. These words can be
 ||leader|| ||-.--||Text shown in leaders {interval}||
 ||invalid|| || -.-- ||Text shown in {curlap} when last lap was invalid (incident or connection issue) ||
 
-= Multiclass =
-
-In this section you can change car names. See [ThemeReference#text].
-
-Format is {{{carname="Car name"}}}. For example:
-
-{{{
-c6r=Corvette C6R
-radical\sr8=Radical SR8
-}}}
-
 = Overlays =
 
 Each of the overlays defined in General-section must have corresponding {{{Overlay-overlayname}}}-section. For example if {{{overlays=driver,sidepanel}}} then there must be {{{[Overlay-driver]}}} and {{{[Overlay-sidepanel]}}}.
@@ -105,8 +94,8 @@ Text property select what information is shown on the overlay. Different dataset
 || {initials} || Initials || GHU || ||
 || {license} || License || WC4.99 || ||
 || {club} || Club || Finland || ||
-|| {car} || Car || Radical SR8 || See [ThemeReference#Multiclass] ||
-|| {class} || Class || N/A || ||
+|| {car} || Car || Radical SR8 || See [ThemeReference#cars.ini] ||
+|| {class} || Class || Prototype || See [ThemeReference#cars.ini] ||
 || {carnum} || Car number || 22 || ||
 || {fastlap} || Fastest lap of the session || 1:23.456 || ||
 || {prevlap} || Lap time of previous finished lap || 1:23.456 || ||
@@ -120,6 +109,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {position_ord} || Current position in english ordinal || 3rd || ||
 || {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
 || {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
+|| {lapsled} || Number of laps in lead || 22 || Works only in race sessions ||
 
 ==== Dataset: `sessionstate` ====
 
@@ -131,6 +121,14 @@ Text property select what information is shown on the overlay. Different dataset
 || {timepassed} || Total elapsed time in session || 12:33 || ||
 || {timeremaining} || Time remaining in session || 17:27 || ||
 || {lapcounter} || Lap counter including transition to "x laps to go" and "final lap" || 12 / 23 || Works just like in the version 1.0 ||
+|| {trackname} || Name of the track || "Infineon long" || See [ThemeReference#tracks.ini] ||
+|| {tracklen_mi} || Length of the track in miles || 1.345 || ||
+|| {tracklen_km} || Length of the track in kilometers || 1.345 || ||
+|| {cautions} || Number of cautions || 5 || Works only in race sessions with full course cautions ||
+|| {cautionlaps} || Number of laps under caution || 25 || Works only in race sessions with full course cautions ||
+|| {leadchanges} || Number of lead changes || 5 || ||
+|| {sessiontype} || Session type || race || See [ThemeReference#Translation] ||
+
 
 = Images =
 
@@ -178,3 +176,32 @@ External data is stored in a [http://en.wikipedia.org/wiki/Comma-separated_value
 Now `{external:0}` would become `Finland` or `USA` and `{external:2}` `Team Trellet` or `Team USA` respectively. 
 
 If the CSV file doesn't have row for the selected driver the external fields will be ignored.
+
+*Tip:* You can use almost any spreadsheet program to create csv-files, including Google Docs.
+
+= cars.ini =
+
+cars.ini holds the names of cars and classes.
+
+Format is {{{carname="Car name"}}}. `carname` is the same used in setup folders, but spaces are replaced with backslashes "\". For example:
+
+{{{
+[Cars]
+c6r="Corvette C6R"
+radical\sr8="Radical SR8"
+
+[Multiclass]
+c6r="GT1"
+radical\sr8="Prototype"
+}}}
+
+= tracks.ini =
+
+tracks.ini holds the names of tracks.
+
+Format is {{{track="Track name"}}}. `track` is the same used in `camera.ini` in `Documents\iRacing`. For example:
+
+{{{
+[Tracks]
+Sonoma\long=Infineon long
+}}}
