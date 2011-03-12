@@ -20,9 +20,11 @@ General settings
 || *width* || Theme width in pixels || 1280 || ||
 || *height* || Theme height in pixels || 720 || ||
 || *overlays* || Comma separated list of text overlays || driver,sessionstate,sidepanel || See [ThemeReference#Overlays] ||
-|| *images* || Comma separated list of images || logo,sidepanel || See [ThemeReference#Images] ||
-|| *tickers* || Comma separated list of tickers || ticker || See [ThemeReference#Tickers] ||
-|| *buttons* || Comma separated list of buttons || driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
+|| images || Comma separated list of images || logo,sidepanel || See [ThemeReference#Images] ||
+|| tickers || Comma separated list of tickers || ticker || See [ThemeReference#Tickers] ||
+|| buttons || Comma separated list of buttons || 
+|| videos|| Comma separated list of videos || replay || See [ThemeReference#Videos] ||
+driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
 || switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default `false` ||
 
 = Translation =
@@ -135,10 +137,11 @@ Text property select what information is shown on the overlay. Different dataset
 Each of the images defined in General-section must have corresponding {{{Image-imagename}}}-section. For example if {{{images=driver,sidepanel}}} then there must be {{{[Image-driver]}}} and {{{[Image-sidepanel]}}}.
 
 || *Value* || *Description* || *Example output* || * Note* ||
-|| *filename* || Filename om the image in theme folder || lights-off.png || Available image formats are BMP, JPEG, PNG, TIFF, Windows Media Photo, GIF and ICON. ||
+|| *filename* || Filename of the image in theme folder || lights-off.png || Available image formats are BMP, JPEG, PNG, TIFF, Windows Media Photo, GIF and ICON. ||
 || *zIndex* || Stacking order of all items in the theme || 10 || Item with largest zIndex will be shown top most and vice versa ||
 || flag || sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
 || light || sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
+|| replay || sets image visible when replay is rewindign || true || ||
 
 = Tickers =
 
@@ -162,6 +165,17 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
 
 ^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `number` is 10.
+
+= Videos =
+
+Each of the videos defined in General-section must have corresponding {{{Video-videoname}}}-section. For example if {{{videos=replay}}} then there must be {{{[Video-replay]}}}.
+
+|| *Value* || *Description* || *Example output* || * Note* ||
+|| *filename* || Filename of the video in theme folder || replay.wmv || Windows Media Video is a safe format to start with. ||
+|| *zIndex* || Stacking order of all items in the theme || 10 || Item with largest zIndex will be shown top most and vice versa ||
+|| flag || sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
+|| light || sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
+|| replay || sets image visible when replay is rewindign || true || ||
 
 = External Data =
 
