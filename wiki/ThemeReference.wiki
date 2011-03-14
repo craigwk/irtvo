@@ -94,6 +94,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {fullname} || Full name || Greger Huttu || ||
 || {shortname} || Shorter name || G Huttu || ||
 || {initials} || Initials || GHU || ||
+|| {driverid} || iRacing customer id || 12345 || ||
 || {license} || License || WC4.99 || ||
 || {club} || Club || Finland || ||
 || {car} || Car || Radical SR8 || See [ThemeReference#cars.ini] ||
@@ -139,9 +140,15 @@ Each of the images defined in General-section must have corresponding {{{Image-i
 || *Value* || *Description* || *Example output* || * Note* ||
 || *filename* || Filename of the image in theme folder || lights-off.png || Available image formats are BMP, JPEG, PNG, TIFF, Windows Media Photo, GIF and ICON. ||
 || *zIndex* || Stacking order of all items in the theme || 10 || Item with largest zIndex will be shown top most and vice versa ||
-|| flag || sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
-|| light || sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
-|| replay || sets image visible when replay is rewindign || true || ||
+|| width || Width of the image || 480 || Default is theme width ||
+|| height || Height of the image || 480 || Default is theme height ||
+|| left || Margin from the left border of the window || 64 || Default is 0 ||
+|| top || Margin from the top border of the window || 582 || Default is 0 ||
+|| flag || Sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
+|| light || Sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
+|| replay || Sets image visible when replay is rewinding || true || ||
+|| dynamic || Dynamic filename || true || When true filename will be parsed for driver text properties, see [ThemeReference#Dataset:_followed_or_standing] ||
+|| default || When dynamic filename doesn't exist, use this filename || default.png || See `dynamic` property ||
 
 = Tickers =
 
