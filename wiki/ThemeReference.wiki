@@ -22,9 +22,9 @@ General settings
 || *overlays* || Comma separated list of text overlays || driver,sessionstate,sidepanel || See [ThemeReference#Overlays] ||
 || images || Comma separated list of images || logo,sidepanel || See [ThemeReference#Images] ||
 || tickers || Comma separated list of tickers || ticker || See [ThemeReference#Tickers] ||
-|| buttons || Comma separated list of buttons || 
+|| buttons || Comma separated list of buttons || sidepanel,ticker || See [ThemeReference#Buttons] ||
 || videos|| Comma separated list of videos || replay || See [ThemeReference#Videos] ||
-driver,sessionstate,sidepanel,ticker || See [ThemeReference#Buttons] ||
+driver,sessionstate,sidepanel,ticker || 
 || switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default `false` ||
 
 = Translation =
@@ -60,8 +60,11 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || *zIndex* || Stacking order of all items in the theme || 100 || Item with largest zIndex will be shown top most and vice versa ||
 || *dataset* || The kind of information shown on the text items || followed || Valid values are `followed`, `standing`, `sessionstate` || 
 || *labels* || Comma sparated list of text labels shown inside of the overlay || num,name,diff || ||
-|| itemheight || Line height of stanging list || 45 || Applies only to overlays that have dataset as `standing` ||
+|| itemsize || Item size of stanging list || 45 || Applies only to overlays that have dataset as `standing` ||
+|| direction || List items to given direction || down || Applies only to overlays that have dataset as `standing`, valid values are `down`, `up`, `left` and `right`. ||
 || number || Number of items to draw || 10 || Applies only to overlays that have dataset as `standing` ||
+|| offset|| Skip a number of drivers from the top || 10 || Applies only to overlays that have dataset as `standing` ||
+
 
 == Overlay labels ==
 
@@ -202,7 +205,7 @@ If the CSV file doesn't have row for the selected driver the external fields wil
 
 = cars.ini =
 
-cars.ini holds the names of cars and classes.
+cars.ini holds the names of cars and classes. File can be in same folder as the irtvo.exe or on theme folder.
 
 Format is {{{carname="Car name"}}}. `carname` is the same used in setup folders, but spaces are replaced with backslashes "\". For example:
 
@@ -218,7 +221,7 @@ radical\sr8="Prototype"
 
 = tracks.ini =
 
-tracks.ini holds the names of tracks.
+tracks.ini holds the names of tracks. File can be in same folder as the irtvo.exe or on theme folder.
 
 Format is {{{track="Track name"}}}. `track` is the same used in `camera.ini` in `Documents\iRacing`. For example:
 
