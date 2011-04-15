@@ -46,7 +46,7 @@ Program uses a few natural language words in its text fields. These words can be
 ||finallap|| || || ||
 ||finishing|| || || ||
 ||leader|| ||-.--||Text shown in leaders {interval}||
-||invalid|| || -.-- ||Text shown in {curlap} when last lap was invalid (incident or connection issue) ||
+||invalid|| || -.-- ||Text shown in {curlap} and {prevlap} when last lap was invalid (incident or connection issue) ||
 
 = Overlays =
 
@@ -114,9 +114,9 @@ Text property select what information is shown on the overlay. Different dataset
 || {position} || Current position || 10 || ||
 || {position_ord} || Current position in english ordinal || 3rd || ||
 || {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
-|| {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
 || {lapsled} || Number of laps in lead || 22 || Works only in race sessions ||
-
+|| {gap} || Time difference to the driver in front || 1.234 ||  ||
+|| {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
 ==== Dataset: `sessionstate` ====
 
 || *Value* || *Description* || *Example output* || * Note* ||
