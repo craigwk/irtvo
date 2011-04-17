@@ -64,6 +64,7 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || direction || List items to given direction || down || Applies only to overlays that have dataset as `standing`, valid values are `down`, `up`, `left` and `right`. ||
 || number || Number of items to draw || 10 || Applies only to overlays that have dataset as `standing` ||
 || offset|| Skip a number of drivers from the top || 10 || Applies only to overlays that have dataset as `standing` ||
+|| fixed || If set item is shown always || true || ||
 
 
 == Overlay labels ==
@@ -152,6 +153,7 @@ Each of the images defined in General-section must have corresponding {{{Image-i
 || replay || Sets image visible when replay is rewinding || true || ||
 || dynamic || Dynamic filename || true || When true filename will be parsed for driver text properties, see [ThemeReference#Dataset:_followed_or_standing] ||
 || default || When dynamic filename doesn't exist, use this filename || default.png || See `dynamic` property ||
+|| fixed || If set item is shown always || true || ||
 
 = Tickers =
 
@@ -161,6 +163,7 @@ Tickers have the same properties as overlays. See [ThemeReference#Overlays]. The
 
 || *Value* || *Description* || *Example output* || * Note* ||
 || fillvertical || Sets the direction which labels are stacked. When `true` it creates multi row ticker. `false` is the normal behavior. || false || Valid values are `true` or `false` ||
+|| fixed || If set item is shown always || true || ||
 
 = Buttons =
 
@@ -170,6 +173,7 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 
 || *Value* || *Description* || *Example output* || * Note* ||
 || text || Sets the text shown in the button. || Side panel || ||
+|| row || To which row the button is added || 2 || Starts from 0, which is the default ||
 || show || Comma separated list of items that will be visible after button press || Overlay-sidepanel,Image-sidepanel || Valid values are any of the overlays, images or tickers defined in `General`. ^1^ ||
 || hide || Comma separated list of items that will be hidden after button press || Ticker-standings || See `show` ||
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
