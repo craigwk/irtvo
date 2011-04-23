@@ -118,12 +118,14 @@ Text property select what information is shown on the overlay. Different dataset
 || {lapsled} || Number of laps in lead || 22 || Works only in race sessions ||
 || {gap} || Time difference to the driver in front || 1.234 ||  ||
 || {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
+
 ==== Dataset: `sessionstate` ====
 
 || *Value* || *Description* || *Example output* || * Note* ||
 || {lapstotal} || Total laps in session || 32 || ||
 || {lapscompleted} || Laps completed by the leader || 20 || ||
 || {lapsremaining} || Laps remaining in session || 12 || ||
+|| {currentlap} || Lap the leader is currently on || 20 || This is {lapscompleted} + 1 ||
 || {timetotal} || Total elapsed time in session || 30:00 || ||
 || {timepassed} || Total elapsed time in session || 12:33 || ||
 || {timeremaining} || Time remaining in session || 17:27 || ||
