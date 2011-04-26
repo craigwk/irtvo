@@ -1,0 +1,9 @@
+#summary Web timing documentation
+#labels Documentation,Featured
+
+= Quick start quide =
+
+  * Change the key from post.php
+  * Upload livetiming folder into your web server
+  * Set post.php as your post url in the options window and use the same key
+  * If necessary add writing permissions to cache folder (chmod 777)
