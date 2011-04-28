@@ -32,8 +32,9 @@ $(document).ready(function() {
 	
 	$.ajaxSetup({
 	  "error":function(event, request, settings){ 
-		$("#debug").append("AJAX error: event:"+event+" request:"+ request +" settings:"+settings+"\n");
-	  }});
+			$("#debug").append("AJAX error: event:"+event+" request:"+ request +" settings:"+settings+"\n");
+	  }
+	});
 	  
 	addRow = function(table, cells){ 
 		var row = table.insertRow(-1);
@@ -238,6 +239,7 @@ $(document).ready(function() {
 				var cell = row.insertCell(-1);
 			}
 		}
+		$("#standings tbody tr:nth-child(odd)").addClass("odd");
 	}
 	
 	updateSessionTimers = function() {
