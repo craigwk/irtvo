@@ -238,7 +238,7 @@ namespace iRTVO
 
                                                     foreach (iRacingTelem.DriverInfoRow driver in di.row)
                                                     {
-                                                        if (driver.userID > 0 && driver.carNum != "ÿÿÿ")
+                                                        if (driver.userID > 0)
                                                         {
                                                             SharedData.driversMutex = new Mutex(true);
                                                             if (driver.onTrack == false && SharedData.drivers[driver.carIdx].onTrack == true)
@@ -302,7 +302,9 @@ namespace iRTVO
                                                                     break;
                                                             }
 
-                                                            SharedData.drivers[driver.carIdx].numberPlate = Int32.Parse(driver.carNum);
+                                                            Boolean result = Int32.TryParse(driver.carNum, out SharedData.drivers[driver.carIdx].numberPlate);
+                                                            if (!result)
+                                                                SharedData.drivers[driver.carIdx].numberPlate = 0;
 
                                                             string[] nameWords = driver.userName.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
