@@ -8,6 +8,9 @@
   * Set the URL to post.php as your Post URL in the options window and use the same key
   * If necessary add writing permissions to cache folder (chmod 777)
 
+= Table of Contents =
+<wiki:toc max_depth="3" />
+
 = Web Timing =
 
 If you have a web server with PHP support you can use web timing to deliver race standings live to your audience. The system works so that iRTVO sends HTTP POST request to the PHP script, which then saves the data into disk. Users then load this data using JavaScript AJAX compile it into a list. iRTVO sends data out with maximum of 1 request per second, the user side updates much slower 5-30 seconds depending on the setup.
@@ -39,8 +42,13 @@ This sets which columns are shown in the listing. Possible values are:
 || pos || Position ||
 || numberPlate || Car number ||
 || name || Driver name ||
+|| initials || Initials from driver name ||
+|| shortname || Driver name with only first letter of his first name ||
+|| club || Driver's club ||
+|| license || Driver's license and safery rating ||
 || car || Car name ||
 || completedLaps || Number of laps completed so far ||
+|| lapsLed || Number of laps led in a race session ||
 || fastLap || Time of the fastest lap in this session ||
 || previouslap || Time of the previous completed lap in this session ||
 || diff || Time or lap difference to leader ||
@@ -57,3 +65,21 @@ This sets how often session info is updated (flags, current lap, etc). By defaul
 
 === cachedir ===
 This sets the directory where json files are looked for. Use the same values as in post.php
+
+== index.html ==
+
+Index.html is just a regular html-file. It loads livetiming.js which then populates the table on the site. There is also some additional `span`-tags, which will have additional session information. You can even include the timing to your existing site, just load the livetiming.js and add the table.
+
+The table has "zebra striping", so that odd lines are in class "odd". With this you can stylize the table with short bit of CSS.
+
+{{{
+/* even lines */
+#standings tbody tr {
+  background-color: #fff;
+}
+
+/* odd lines */
+#standings tbody tr.odd {
+  background-color: #f3f3f3;
+}
+}}}
