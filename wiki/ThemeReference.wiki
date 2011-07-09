@@ -110,7 +110,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {sector2} || Current lap sector 2 time || 1:23.456 || ||
 || {sector2} || Current lap sector 3 time || 1:23.456 || ||
 || {curlap}|| Lap time  of the current unfinished lap || 1:23.456 || ||
-|| {lapnum} || Current lap number || 10 ||
+|| {lapnum} || Current lap number || 10 || ||
 || {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 || ||
 || {speedfast_kph} || Average speed of the fastest lap in kilometers per hour || 123.45 || ||
 || {speedlast_mph} || Average speed of the previous lap in miles per hour || 123.45 || ||
