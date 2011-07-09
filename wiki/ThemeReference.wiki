@@ -106,17 +106,24 @@ Text property select what information is shown on the overlay. Different dataset
 || {carnum} || Car number || 22 || ||
 || {fastlap} || Fastest lap of the session || 1:23.456 || ||
 || {prevlap} || Lap time of previous finished lap || 1:23.456 || ||
+|| {sector1} || Current lap sector 1 time || 1:23.456 || ||
+|| {sector2} || Current lap sector 2 time || 1:23.456 || ||
+|| {sector2} || Current lap sector 3 time || 1:23.456 || ||
 || {curlap}|| Lap time  of the current unfinished lap || 1:23.456 || ||
 || {lapnum} || Current lap number || 10 ||
 || {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 || ||
 || {speedfast_kph} || Average speed of the fastest lap in kilometers per hour || 123.45 || ||
 || {speedlast_mph} || Average speed of the previous lap in miles per hour || 123.45 || ||
 || {speedlast_kph} || Average speed of the previous lap in kilometers per hour || 123.45 || ||
+|| {livespeed_mph} || Current speed in miles per hour || 123 || ||
+|| {livespeed_kph} || Current speed in kilometers per hour || 123 || ||
 || {position} || Current position || 10 || ||
 || {position_ord} || Current position in english ordinal || 3rd || ||
-|| {interval} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
+|| {gap} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
+|| {livegap} || Difference to leader, updated 60 times a second || +1.234 || Sign can be switched in {{{[General]}}} ||
+|| {interval} || Time difference to the driver in front || 1.234 ||  ||
+|| {liveinterval} || Time difference to the driver in front, updated 60 times a second || 1.234 ||  ||
 || {lapsled} || Number of laps in lead || 22 || Works only in race sessions ||
-|| {gap} || Time difference to the driver in front || 1.234 ||  ||
 || {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
 
 ==== Dataset: `sessionstate` ====
