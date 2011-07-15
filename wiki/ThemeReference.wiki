@@ -114,8 +114,8 @@ Text property select what information is shown on the overlay. Different dataset
 || {lapnum} || Current lap number || 10 || ||
 || {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 || ||
 || {speedfast_kph} || Average speed of the fastest lap in kilometers per hour || 123.45 || ||
-|| {speedlast_mph} || Average speed of the previous lap in miles per hour || 123.45 || ||
-|| {speedlast_kph} || Average speed of the previous lap in kilometers per hour || 123.45 || ||
+|| {speedprev_mph} || Average speed of the previous lap in miles per hour || 123.45 || ||
+|| {speedprev_kph} || Average speed of the previous lap in kilometers per hour || 123.45 || ||
 || {livespeed_mph} || Current speed in miles per hour || 123 || ||
 || {livespeed_kph} || Current speed in kilometers per hour || 123 || ||
 || {position} || Current position || 10 || ||
