@@ -83,6 +83,7 @@ Each of the labels defined in overlay's labels must be defined in its own sectio
 || left || Top-left corner's distance from parent object's left border || 0 || ||
 || top || Top-left corner's distance from parent object's top border || 0 || ||
 || offset || Add offset to shown driver. || -1 || ^2^ ||
+|| uppercase || If true the label text is capitilized || true || ||
 
 ^1^ When using filename the file must be on the theme folder. When using just a font name, the font must be installed in Windows' font folder. Valid values are either `arial.ttf` (filename) or `Arial` (installed)
 
