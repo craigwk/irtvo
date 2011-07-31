@@ -64,6 +64,7 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || direction || List items to given direction || down || Applies only to overlays that have dataset as `standing`, valid values are `down`, `up`, `left` and `right`. ||
 || number || Number of items to draw || 10 || Applies only to overlays that have dataset as `standing` ||
 || offset|| Skip a number of drivers from the top || 10 || Applies only to overlays that have dataset as `standing` ||
+|| skip|| Skip a number of drivers from each page || 10 || Applies only to overlays that have dataset as `standing` ||
 || fixed || If set item is shown always || true || ||
 
 
