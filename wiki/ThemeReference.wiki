@@ -76,15 +76,24 @@ Each of the labels defined in overlay's labels must be defined in its own sectio
 || *width* || Object's width in pixels || 400 ||  ||
 || *fontsize* || Font size for the text || 34 ||  ||
 || *text* || Text formatting || {position_ord} || See [ThemeReference#text] ||
-|| font || Font used to draw the text || Arial || Can be filename or a font name installed in Windows ^1^ ||
+|| font || Font used to draw the text || "Arial Black" || Use the font's full name as seen on Windows Font Viewer (double click the fontfile) ||
 || fontcolor || Font color for the text || black || [http://samples.msdn.microsoft.com/workshop/samples/author/dhtml/colors/ColorTable.htm See all possible colors] ||
 || fontbold || Font weight for the text || false || true or false ||
 || fontitalic || Font style for the text || `true` or `false` || ||
 || align || Text alignment inside its borders || left || `left`, `right` or `center` ||
 || left || Top-left corner's distance from parent object's left border || 0 || ||
 || top || Top-left corner's distance from parent object's top border || 0 || ||
+|| padding-left || Padding from left edge of the label || 2 || ||
+|| padding-top || Padding from left edge of the label || 2 || ||
+|| padding-right || Padding from left edge of the label || 2 || ||
+|| padding-bottom || Padding from left edge of the label || 2 || ||
 || offset || Add offset to shown driver. || -1 || ^2^ ||
 || uppercase || If true the label text is capitilized || true || ||
+|| bgcolor || Background color of the label || #33000000 || [http://msdn.microsoft.com/en-us/library/system.windows.media.solidcolorbrush.aspx See documentation]. ||
+|| background || Filename of the background image || "labelbg.png" || ||
+|| dynamic|| Use dynamic filename || true || ||
+|| defaultbackground || Filename of the default background image || "labelbg.png" || Used when dynamic background isn't found. ||
+
 
 ^1^ When using filename the file must be on the theme folder. When using just a font name, the font must be installed in Windows' font folder. Valid values are either `arial.ttf` (filename) or `Arial` (installed)
 
@@ -111,6 +120,12 @@ Text property select what information is shown on the overlay. Different dataset
 || {sector1} || Current lap sector 1 time || 1:23.456 || ||
 || {sector2} || Current lap sector 2 time || 1:23.456 || ||
 || {sector2} || Current lap sector 3 time || 1:23.456 || ||
+|| {sector1_speed_kph} || Current lap sector 1 speed in kph || 123.45 || ||
+|| {sector2_speed_kph} || Current lap sector 2 speed in kph|| 123.45 || ||
+|| {sector2_speed_kph} || Current lap sector 3 speed in kph|| 123.45 || ||
+|| {sector1_speed_mph} || Current lap sector 1 speed in mph|| 123.45 || ||
+|| {sector2_speed_mph} || Current lap sector 2 speed in mph|| 123.45 || ||
+|| {sector2_speed_mph} || Current lap sector 3 speed in mph|| 123.45 || ||
 || {curlap}|| Lap time  of the current unfinished lap || 1:23.456 || ||
 || {lapnum} || Current lap number || 10 || ||
 || {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 || ||
