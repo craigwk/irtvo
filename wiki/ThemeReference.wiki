@@ -66,6 +66,8 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || offset|| Skip a number of drivers from the top || 10 || Applies only to overlays that have dataset as `standing` ||
 || skip|| Skip a number of drivers from each page || 10 || Applies only to overlays that have dataset as `standing` ||
 || fixed || If set item is shown always || true || ||
+|| maxpages || Limits the number of pages || 1 || ||
+
 
 
 == Overlay labels ==
