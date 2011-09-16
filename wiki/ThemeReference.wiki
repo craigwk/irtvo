@@ -192,6 +192,7 @@ Tickers have the same properties as overlays. See [ThemeReference#Overlays]. The
 || *Value* || *Description* || *Example output* || * Note* ||
 || fillvertical || Sets the direction which labels are stacked. When `true` it creates multi row ticker. `false` is the normal behavior. || false || Valid values are `true` or `false` ||
 || fixed || If set item is shown always || true || ||
+|| speed || Speed of scrolling in 1/60th pixels per second || 6 || Default is 3 ||
 
 = Buttons =
 
