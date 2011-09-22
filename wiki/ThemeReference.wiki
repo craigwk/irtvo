@@ -143,6 +143,8 @@ Text property select what information is shown on the overlay. Different dataset
 || {interval} || Time difference to the driver in front || 1.234 ||  ||
 || {liveinterval} || Time difference to the driver in front, updated 60 times a second || 1.234 ||  ||
 || {lapsled} || Number of laps in lead || 22 || Works only in race sessions ||
+|| {pitstops} || Number of pit stops made || 1 || Works only in race sessions ||
+|| {pitstoptime} || Last pit stop length or live timer when pitting || 23.56 || Works only in race sessions ||
 || {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
 
 ==== Dataset: `sessionstate` ====
