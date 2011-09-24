@@ -31,22 +31,23 @@ driver,sessionstate,sidepanel,ticker ||
 
 Program uses a few natural language words in its text fields. These words can be changed in Translation-section.
 
-|| *Name* || *Description* || *Example value* || *Note* ||
-||lap|| || || ||
-||laps|| || || ||
-||minutes|| || || ||
-||of|| || || ||
+|| *Name* || *Example value* || *Note* ||
+||lap||  || ||
+||laps||  || ||
+||minutes|| || ||
+||of||  || ||
 ||remaining|| ||to go|| ||
-||race|| || || ||
-||qualify|| || || ||
-||practice|| || || ||
-||out|| ||retired||Text shown in user's {interval} when he has quitted||
-||gridding|| || || ||
-||pacelap|| || || ||
-||finallap|| || || ||
-||finishing|| || || ||
-||leader|| ||-.--||Text shown in leaders {interval}||
-||invalid|| || -.-- ||Text shown in {curlap} and {prevlap} when last lap was invalid (incident or connection issue) ||
+||race||  || ||
+||qualify||  || ||
+||practice|| || ||
+||out|| retired||Text shown in user's {interval} when he has quitted||
+||gridding|| || ||
+||pacelap||  || ||
+||finallap|| || ||
+||finishing||  || ||
+||leader|| -.--||Text shown in leaders {interval}||
+||invalid||  -.-- ||Text shown in {curlap} and {prevlap} when last lap was invalid (incident or connection issue) ||
+||replay|| REPLAY || Text shown in {lapcounter} when the sim is in replay ||
 
 = Overlays =
 
