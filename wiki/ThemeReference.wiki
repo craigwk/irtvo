@@ -123,12 +123,12 @@ Text property select what information is shown on the overlay. Different dataset
 || {sector1} || Current lap sector 1 time || 1:23.456 || ||
 || {sector2} || Current lap sector 2 time || 1:23.456 || ||
 || {sector2} || Current lap sector 3 time || 1:23.456 || ||
-|| {sector1_speed_kph} || Current lap sector 1 speed in kph || 123.45 || ||
-|| {sector2_speed_kph} || Current lap sector 2 speed in kph|| 123.45 || ||
-|| {sector2_speed_kph} || Current lap sector 3 speed in kph|| 123.45 || ||
-|| {sector1_speed_mph} || Current lap sector 1 speed in mph|| 123.45 || ||
-|| {sector2_speed_mph} || Current lap sector 2 speed in mph|| 123.45 || ||
-|| {sector2_speed_mph} || Current lap sector 3 speed in mph|| 123.45 || ||
+|| {sector1_speed_kph} || Current lap sector 1 top speed in kph || 123.45 || ||
+|| {sector2_speed_kph} || Current lap sector 2 top speed in kph|| 123.45 || ||
+|| {sector2_speed_kph} || Current lap sector 3 top speed in kph|| 123.45 || ||
+|| {sector1_speed_mph} || Current lap sector 1 top speed in mph|| 123.45 || ||
+|| {sector2_speed_mph} || Current lap sector 2 top speed in mph|| 123.45 || ||
+|| {sector2_speed_mph} || Current lap sector 3 top speed in mph|| 123.45 || ||
 || {curlap}|| Lap time  of the current unfinished lap || 1:23.456 || ||
 || {lapnum} || Current lap number || 10 || ||
 || {speedfast_mph} || Average speed of the fastest lap in miles per hour || 123.45 || ||
