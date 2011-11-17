@@ -98,7 +98,7 @@ Each of the labels defined in overlay's labels must be defined in its own sectio
 || defaultbackground || Filename of the default background image || "labelbg.png" || Used when dynamic background isn't found. ||
 
 
-^1^ When using filename the file must be on the theme folder. When using just a font name, the font must be installed in Windows' font folder. Valid values are either `arial.ttf` (filename) or `Arial` (installed)
+^1^ Fonts need to be either in the theme folder or installed in Windows' fonts folder.
 
 ^2^ For example `dataset=followed` and the driver followed is on 3rd place. The using `offset=-1` would show data of the driver on 2nd place and similarly `offset=3` would show data of 5th place driver.
 
