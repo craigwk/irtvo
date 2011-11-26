@@ -196,6 +196,8 @@ Tickers have the same properties as overlays. See [ThemeReference#Overlays]. The
 || fillvertical || Sets the direction which labels are stacked. When `true` it creates multi row ticker. `false` is the normal behavior. || false || Valid values are `true` or `false` ||
 || fixed || If set item is shown always || true || ||
 || speed || Speed of scrolling in 1/60th pixels per second || 6 || Default is 3 ||
+|| header || A label to be shown as the first item on the ticker || header || value "header" references to Ticker-[ticker name]-header ||
+|| footer || A label to be shown as the last item on the ticker || footer || similarly as in header ||
 
 = Buttons =
 
