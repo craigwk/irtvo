@@ -45,7 +45,6 @@ Program uses a few natural language words in its text fields. These words can be
 ||pacelap||  || ||
 ||finallap|| || ||
 ||finishing||  || ||
-||leader|| -.--||Text shown in leaders {interval}||
 ||invalid||  -.-- ||Text shown in {curlap} and {prevlap} when last lap was invalid (incident or connection issue) ||
 ||replay|| REPLAY || Text shown in {lapcounter} when the sim is in replay ||
 
@@ -212,6 +211,7 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 || show || Comma separated list of items that will be visible after button press || Overlay-sidepanel,Image-sidepanel || Valid values are any of the overlays, images or tickers defined in `General`. ^1^ ||
 || hide || Comma separated list of items that will be hidden after button press || Ticker-standings || See `show` ||
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
+|| delay || Delay between automatic page changes || 5 || Applies only to  buttons which have at least one overlay that has standings-dataset ||
 
 ^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `number` is 10.
 
