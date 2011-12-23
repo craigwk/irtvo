@@ -139,6 +139,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {livespeed_kph} || Current speed in kilometers per hour || 123 || ||
 || {position} || Current position || 10 || ||
 || {position_ord} || Current position in english ordinal || 3rd || ||
+|| {positiongain} || Positions gained/lost since the start || +3 || Works only in race sessions ||
 || {gap} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
 || {livegap} || Difference to leader, updated 60 times a second || +1.234 || Sign can be switched in {{{[General]}}} ||
 || {interval} || Time difference to the driver in front || 1.234 ||  ||
