@@ -23,8 +23,8 @@ General settings
 || images || Comma separated list of images || logo,sidepanel || See [ThemeReference#Images] ||
 || tickers || Comma separated list of tickers || ticker || See [ThemeReference#Tickers] ||
 || buttons || Comma separated list of buttons || sidepanel,ticker || See [ThemeReference#Buttons] ||
-|| videos|| Comma separated list of videos || replay || See [ThemeReference#Videos] ||
-driver,sessionstate,sidepanel,ticker || 
+|| videos || Comma separated list of videos || replay || See [ThemeReference#Videos] || 
+|| sounds || Comma separated list of sounds|| bleep || See [ThemeReference#Sounds] ||
 || switchsign || Sign used with intervals (-1.456 or +2 laps) || true || Default `false` ||
 
 = Translation =
@@ -58,16 +58,17 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || *left* || Margin from the left border of the window || 64 || ||
 || *top* || Margin from the top border of the window || 582 || ||
 || *zIndex* || Stacking order of all items in the theme || 100 || Item with largest zIndex will be shown top most and vice versa ||
-|| *dataset* || The kind of information shown on the text items || followed || Valid values are `followed`, `standing`, `sessionstate` || 
+|| *dataset* || The kind of information shown on the text items || followed || Valid values are `followed`, `standing`, `sessionstate` ||
+|| dataorder || Information used for sorting drivers || fastestlap || Valid values are `fastestlap`, `previouslap`, `position`. Position is the default. || 
 || *labels* || Comma sparated list of text labels shown inside of the overlay || num,name,diff || ||
+|| fixed || If set item is shown always || true || ||
+|| maxpages || Limits the number of pages || 1 || ||
 || itemsize || Item size of stanging list || 45 || Applies only to overlays that have dataset as `standing` ||
 || direction || List items to given direction || down || Applies only to overlays that have dataset as `standing`, valid values are `down`, `up`, `left` and `right`. ||
 || number || Number of items to draw || 10 || Applies only to overlays that have dataset as `standing` ||
 || offset|| Skip a number of drivers from the top || 10 || Applies only to overlays that have dataset as `standing` ||
 || skip|| Skip a number of drivers from each page || 10 || Applies only to overlays that have dataset as `standing` ||
-|| fixed || If set item is shown always || true || ||
-|| maxpages || Limits the number of pages || 1 || ||
-
+|| delay || Time in seconds before automatically changing page || 5 || Applies only to overlays that have dataset as `standing` ||
 
 
 == Overlay labels ==
@@ -95,7 +96,6 @@ Each of the labels defined in overlay's labels must be defined in its own sectio
 || background || Filename of the background image || "labelbg.png" || ||
 || dynamic|| Use dynamic filename || true || ||
 || defaultbackground || Filename of the default background image || "labelbg.png" || Used when dynamic background isn't found. ||
-
 
 ^1^ Fonts need to be either in the theme folder or installed in Windows' fonts folder.
 
@@ -167,7 +167,6 @@ Text property select what information is shown on the overlay. Different dataset
 || {leadchanges} || Number of lead changes || 5 || ||
 || {sessiontype} || Session type || race || See [ThemeReference#Translation] ||
 
-
 = Images =
 
 Each of the images defined in General-section must have corresponding {{{Image-imagename}}}-section. For example if {{{images=driver,sidepanel}}} then there must be {{{[Image-driver]}}} and {{{[Image-sidepanel]}}}.
@@ -179,9 +178,6 @@ Each of the images defined in General-section must have corresponding {{{Image-i
 || height || Height of the image || 480 || Default is theme height ||
 || left || Margin from the left border of the window || 64 || Default is 0 ||
 || top || Margin from the top border of the window || 582 || Default is 0 ||
-|| flag || Sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
-|| light || Sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
-|| replay || Sets image visible when replay is rewinding || true || ||
 || dynamic || Dynamic filename || true || When true filename will be parsed for driver text properties, see [ThemeReference#Dataset:_followed_or_standing] ||
 || default || When dynamic filename doesn't exist, use this filename || default.png || See `dynamic` property ||
 || fixed || If set item is shown always || true || ||
@@ -215,6 +211,22 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 
 ^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `number` is 10.
 
+= Triggers=
+
+Triggers are much like buttons, but they are triggered automically based on their name. Valid names are:
+
+|| *Name* || *Description* ||
+|| flagGreen || Green flag ||
+|| flagYellow || Yellow flag ||
+|| flagWhite || White flag ||
+|| flagCheckered || Checkered flag ||
+|| lightsOff || Triggered few seconds after the start ||
+|| lightsReady || Lights off ||
+|| lightsSet || Lights on (red) ||
+|| lightsGo || Green light ||
+|| replay || Triggered when replay is activated ||
+|| live || Triggered when coming back to live from replay ||
+
 = Videos =
 
 Each of the videos defined in General-section must have corresponding {{{Video-videoname}}}-section. For example if {{{videos=replay}}} then there must be {{{[Video-replay]}}}.
@@ -222,9 +234,17 @@ Each of the videos defined in General-section must have corresponding {{{Video-v
 || *Value* || *Description* || *Example output* || * Note* ||
 || *filename* || Filename of the video in theme folder || replay.wmv || Windows Media Video is a safe format to start with. ||
 || *zIndex* || Stacking order of all items in the theme || 10 || Item with largest zIndex will be shown top most and vice versa ||
-|| flag || sets image visible when selected flag is set || green || Valid values are `green`, `yellow`, `white` and `checkered` ||
-|| light || sets image visible when selected start light is set || green || Valid values are `green`, `red` and `off` ||
-|| replay || sets image visible when replay is rewindign || true || ||
+|| loop || When set the video is looped around and stopped only when "hidden" || true || ||
+
+
+= Sounds=
+
+Each of the sounds defined in General-section must have corresponding {{{Sound-videoname}}}-section. For example if {{{sounds=bleep}}} then there must be {{{[Sound-bleep]}}}.
+
+|| *Value* || *Description* || *Example output* || * Note* ||
+|| *filename* || Filename of the video in theme folder || beep.wav || WAVs should always work ||
+|| loop || When set the sound is looped around and stopped only when "hidden" || true || ||
+
 
 = External Data =
 
