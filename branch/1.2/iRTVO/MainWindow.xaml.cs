@@ -566,5 +566,55 @@ namespace iRTVO
             }
             listsWindow.Activate();
         }
+
+        private void bReset_Click(object sender, RoutedEventArgs e)
+        {
+            SharedData.writeMutex.WaitOne(100);
+            SharedData.readMutex.WaitOne(100);
+
+            updateTimer.Stop();
+            triggerTimer.Stop();
+
+            SharedData.runApi = false;
+
+            if (overlayWindow != null)
+                overlayWindow.Close();
+            if (controlsWindow != null)
+                controlsWindow.Close();
+            if (listsWindow != null)
+                listsWindow.Close();
+
+            SharedData.runApi = true;
+            SharedData.runOverlay = false;
+            SharedData.apiConnected = false;
+            SharedData.isLive = true;
+
+            // Data
+            SharedData.Drivers = new List<DriverInfo>();
+            SharedData.Sessions = new Sessions();
+            SharedData.Track = new TrackInfo();
+            SharedData.Camera = new CameraInfo();
+            SharedData.Events = new Events();
+            SharedData.Bookmarks = new Bookmarks();
+            SharedData.Sectors = new List<Single>();
+            SharedData.SelectedSectors = new List<Single>();
+            SharedData.Classes = new Int32[3] { -1, -1, -1 };
+
+            // Update stuff
+            SharedData.updateControls = false;
+            SharedData.showSimUi = true;
+
+            overlayWindow = new Overlay();
+            controlsWindow = new Controls();
+
+            overlayWindow.Show();
+            controlsWindow.Show();
+
+            updateTimer.Start();
+            triggerTimer.Start();
+
+            SharedData.writeMutex = new Mutex();
+            SharedData.readMutex = new Mutex();
+        }
     }
 }
