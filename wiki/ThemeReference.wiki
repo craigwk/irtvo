@@ -256,7 +256,7 @@ External data is stored in a [http://en.wikipedia.org/wiki/Comma-separated_value
 12345;USA;Boston;Team USA
 }}}
 
-Now `{external:0}` would become `Finland` or `USA` and `{external:2}` `Team Trellet` or `Team USA` respectively. 
+Now `{external:0}` would become `Finland` or `USA` and `{external:1}` `Team Trellet` or `Team USA` respectively. 
 
 If the CSV file doesn't have row for the selected driver the external fields will be ignored.
 
