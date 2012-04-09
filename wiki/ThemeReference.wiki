@@ -69,6 +69,8 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 || offset|| Skip a number of drivers from the top || 10 || Applies only to overlays that have dataset as `standing` ||
 || skip|| Skip a number of drivers from each page || 10 || Applies only to overlays that have dataset as `standing` ||
 || delay || Time in seconds before automatically changing page || 5 || Applies only to overlays that have dataset as `standing` ||
+|| loop || 
+|| class || Filters results to be single class and enable multiclass specific items {class*} || GT || See [ThemeReference#cars.ini] ||
 
 
 == Overlay labels ==
@@ -147,6 +149,13 @@ Text property select what information is shown on the overlay. Different dataset
 || {pitstops} || Number of pit stops made || 1 || Works only in race sessions ||
 || {pitstoptime} || Last pit stop length or live timer when pitting || 23.56 || Works only in race sessions ||
 || {external:#} || Shows data from CSV-file, replace # with column number. || N/A || See [ThemeReference#External_Data] ||
+|| {classposition} || Current position in class || 1 || Multiclass variant ||
+|| {classposition_ord} || Current position (ordinal) in class || 1st || Multiclass variant ||
+|| {classpositiongain} || Positions (in class) gained/lost since the start|| -1 || Multiclass variant ||
+|| {classgap} || Difference to class leader || +1.234 || Multiclass variant ||
+|| {classlivegap} || Difference to class leader (realtime) || +1.234 || Multiclass variant ||
+|| {classinterval} || Time difference to same class driver in front || +1.234 || Multiclass variant ||
+|| {classliveinterval} || Time difference to same class driver in front (real time). || +1.234 || Multiclass variant ||
 
 ==== Dataset: `sessionstate` ====
 
@@ -208,6 +217,7 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 || hide || Comma separated list of items that will be hidden after button press || Ticker-standings || See `show` ||
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
 || delay || Delay between automatic page changes || 5 || Applies only to  buttons which have at least one overlay that has standings-dataset ||
+|| loop || Loops back to first page after the last one || true ||  ||
 
 ^1^ Special note: When using overlay with dataset `standing` use always `show` to switch to the next page. For example 30 drivers will have 3 pages worth of items if `number` is 10.
 
@@ -270,13 +280,17 @@ Format is {{{carname="Car name"}}}. `carname` is the same used in setup folders
 
 {{{
 [Cars]
-c6r="Corvette C6R"
-radical\sr8="Radical SR8"
+26="Chevrolet Corvette C6R"
+39="HPD ARX-01c"
+40="Ford GT"
 
 [Multiclass]
-c6r="GT1"
-radical\sr8="Prototype"
+26="GT"
+40="GT"
+39="P2"
 }}}
+
+Cars with same class name (like GT above) are grouped to same class.
 
 = tracks.ini =
 
@@ -286,5 +300,5 @@ Format is {{{track="Track name"}}}. `track` is the same used in `camera.ini` in 
 
 {{{
 [Tracks]
-Sonoma\long=Infineon long
+26="Daytona International Speedway Road"
 }}}
