@@ -4,10 +4,10 @@
 = Frequently Asked Questions=
 
 === Q: Does the program work with replays? ===
-A: Currently it doesn't. This is because iRacing API doesn't output any data with replays. However the staff has told that it's on the list and will be implemented some day.
+A: Currently it doesn't. Some features do work, YMMV.
 
 === Q: Which streaming softwares work with iRTVO? ===
+  * [http://www.own3d.tv XSplit] (recommended)
   * Windows Media Encoder 9
-  * [http://www.own3d.tv XSplit]
   * [http://www.ustream.tv/producer Ustream Producer]
   * [http://www.videolan.org/vlc/ VLC] + [http://koitsu.wordpress.com/2009/09/12/how-to-install-and-use-scfh-dsf/ SCFH DSF]
