@@ -78,9 +78,10 @@ Each of the overlays defined in General-section must have corresponding {{{Overl
 Each of the labels defined in overlay's labels must be defined in its own section. For example {{{labels=name,diff}}} in {{{[Overlay-driver]}}} must then have {{{[Overlay-driver-name]}}} and {{{[Overlay-driver-diff]}}}.
 
 || *Name* || *Description* || *Example value* || *Note* ||
-|| *width* || Object's width in pixels || 400 ||  ||
 || *fontsize* || Font size for the text || 34 ||  ||
-|| *text* || Text formatting || {position_ord} || See [ThemeReference#text] ||
+|| *width* || Object's width in pixels || 400 ||  ||
+|| height || Object's height in pixels || 30 ||  ||
+|| text || Text formatting || {position_ord} || See [ThemeReference#text] ||
 || font || Font used to draw the text || "Arial Black" || Use the font's full name as seen on Windows Font Viewer (double click the fontfile) ||
 || fontcolor || Font color for the text || black || [http://samples.msdn.microsoft.com/workshop/samples/author/dhtml/colors/ColorTable.htm See all possible colors] ||
 || fontbold || Font weight for the text || false || true or false ||
