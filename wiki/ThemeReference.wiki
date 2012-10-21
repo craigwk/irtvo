@@ -142,6 +142,12 @@ Text property select what information is shown on the overlay. Different dataset
 || {position} || Current position || 10 || ||
 || {position_ord} || Current position in english ordinal || 3rd || ||
 || {positiongain} || Positions gained/lost since the start || +3 || Works only in race sessions ||
+|| {startposition} || Positions at start || 3 || Works only in race sessions ||
+|| {startposition_ord} || Positions at start in english ordinal || 3rd || Works only in race sessions ||
+|| {highestposition} || Highest position during the race || 3 || Works only in race sessions ||
+|| {highestposition_ord} || Highest position during the race in english ordinal || 3rd || Works only in race sessions ||
+|| {lowestposition} || Lowest position during the race || 29 || Works only in race sessions ||
+|| {lowestposition_ord} || Lowest position during the race in english ordinal || 29th || Works only in race sessions ||
 || {gap} || Difference to leader. In practice/qualify difference of fastest laps, in race time/lap difference || +1.234 || Sign can be switched in {{{[General]}}} ||
 || {livegap} || Difference to leader, updated 60 times a second || +1.234 || Sign can be switched in {{{[General]}}} ||
 || {interval} || Time difference to the driver in front || 1.234 ||  ||
@@ -153,6 +159,12 @@ Text property select what information is shown on the overlay. Different dataset
 || {classposition} || Current position in class || 1 || Multiclass variant ||
 || {classposition_ord} || Current position (ordinal) in class || 1st || Multiclass variant ||
 || {classpositiongain} || Positions (in class) gained/lost since the start|| -1 || Multiclass variant ||
+|| {classstartposition} || Class position at start || 3 || Works only in race sessions ||
+|| {classstartposition_ord} || Class position at start in english ordinal || 3rd || Works only in race sessions ||
+|| {classhighestposition} || Highest class position during the race || 3 || Works only in race sessions ||
+|| {classhighestposition_ord} || Highest class  position during the race in english ordinal || 3rd || Works only in race sessions ||
+|| {classlowestposition} || Lowest class position during the race || 29 || Works only in race sessions ||
+|| {classlowestposition_ord} || Lowest class position during the race in english ordinal || 29th || Works only in race sessions ||
 || {classgap} || Difference to class leader || +1.234 || Multiclass variant ||
 || {classlivegap} || Difference to class leader (realtime) || +1.234 || Multiclass variant ||
 || {classinterval} || Time difference to same class driver in front || +1.234 || Multiclass variant ||
