@@ -94,6 +94,7 @@ Each of the labels defined in overlay's labels must be defined in its own sectio
 || padding-right || Padding from left edge of the label || 2 || ||
 || padding-bottom || Padding from left edge of the label || 2 || ||
 || offset || Add offset to shown driver. || -1 || ^2^ ||
+|| rounding|| How many decimals are shown in time based labels. Only values between 0-3 work. || 3 || ||
 || uppercase || If true the label text is capitilized || true || ||
 || bgcolor || Background color of the label || #33000000 || [http://msdn.microsoft.com/en-us/library/system.windows.media.solidcolorbrush.aspx See documentation]. ||
 || background || Filename of the background image || "labelbg.png" || ||
@@ -159,12 +160,12 @@ Text property select what information is shown on the overlay. Different dataset
 || {classposition} || Current position in class || 1 || Multiclass variant ||
 || {classposition_ord} || Current position (ordinal) in class || 1st || Multiclass variant ||
 || {classpositiongain} || Positions (in class) gained/lost since the start|| -1 || Multiclass variant ||
-|| {classstartposition} || Class position at start || 3 || Works only in race sessions ||
-|| {classstartposition_ord} || Class position at start in english ordinal || 3rd || Works only in race sessions ||
-|| {classhighestposition} || Highest class position during the race || 3 || Works only in race sessions ||
-|| {classhighestposition_ord} || Highest class  position during the race in english ordinal || 3rd || Works only in race sessions ||
-|| {classlowestposition} || Lowest class position during the race || 29 || Works only in race sessions ||
-|| {classlowestposition_ord} || Lowest class position during the race in english ordinal || 29th || Works only in race sessions ||
+|| {classstartposition} || Class position at start || 3 || Multiclass variant ||
+|| {classstartposition_ord} || Class position at start in english ordinal || 3rd || Multiclass variant ||
+|| {classhighestposition} || Highest class position during the race || 3 || Multiclass variant ||
+|| {classhighestposition_ord} || Highest class  position during the race in english ordinal || 3rd || Multiclass variant ||
+|| {classlowestposition} || Lowest class position during the race || 29 || Multiclass variant ||
+|| {classlowestposition_ord} || Lowest class position during the race in english ordinal || 29th || Multiclass variant ||
 || {classgap} || Difference to class leader || +1.234 || Multiclass variant ||
 || {classlivegap} || Difference to class leader (realtime) || +1.234 || Multiclass variant ||
 || {classinterval} || Time difference to same class driver in front || +1.234 || Multiclass variant ||
