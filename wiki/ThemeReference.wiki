@@ -227,7 +227,7 @@ Buttons show and hide overlays, images and tickers. Each button can do any combi
 || *Value* || *Description* || *Example output* || * Note* ||
 || text || Sets the text shown in the button. || Side panel || ||
 || row || To which row the button is added || 2 || Starts from 0, which is the default ||
-|| show || Comma separated list of items that will be visible after button press || Overlay-sidepanel,Image-sidepanel || Valid values are any of the overlays, images or tickers defined in `General`. ^1^ ||
+|| show || Comma separated list of items that will be visible after button press || Overlay-sidepanel,Image-sidepanel,Trigger-flags || Valid values are any of the overlays, images or tickers defined in `General` or any valid trigger. ^1^ ||
 || hide || Comma separated list of items that will be hidden after button press || Ticker-standings || See `show` ||
 || toggle || Comma separated list of items that will be toggled (visible/hidden) after button press || Oveylay-driver || See `show` ||
 || delay || Delay between automatic page changes || 5 || Applies only to  buttons which have at least one overlay that has standings-dataset ||
