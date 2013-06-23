@@ -11,3 +11,8 @@ A: Currently it doesn't. Some features do work, YMMV.
   * Windows Media Encoder 9
   * [http://www.ustream.tv/producer Ustream Producer]
   * [http://www.videolan.org/vlc/ VLC] + [http://koitsu.wordpress.com/2009/09/12/how-to-install-and-use-scfh-dsf/ SCFH DSF]
+
+=== Q: iRTVO crashed, how to report? ===
+A: First go to Windows' Event viewer (hit *winkey+r* and type *eventvwr*). From Event viewer browse to *Windows Logs/Application* and you should see errors at the top. When crashing iRTVO created two errors, first one is *.NET Runtime error* and the other is application error. .NET runtime error is the more interesting one, select that and copy-n-paste everything from the textbox to [http://members.iracing.com/jforum/posts/list/1351217.page iRTVO thread]
+
+https://dl.dropboxusercontent.com/u/1894613/eventviewer.png
