@@ -184,8 +184,6 @@ namespace iRTVO
 
                                     if (driverPos <= standingsCount)
                                     {
-                                        labels[i][(j * SharedData.theme.objects[i].itemCount) + k].Visibility = System.Windows.Visibility.Visible;
-
                                         if (SharedData.theme.objects[i].labels[j].session != Theme.sessionType.none)
                                             session = SharedData.sessionTypes[SharedData.theme.objects[i].labels[j].session];
                                         else
@@ -210,7 +208,7 @@ namespace iRTVO
                                                 driver.Driver.UserId = item.Key;
                                             }
                                         }
-  
+
                                         labels[i][(j * SharedData.theme.objects[i].itemCount) + k].Content = SharedData.theme.formatFollowedText(
                                             SharedData.theme.objects[i].labels[j],
                                             driver,
@@ -253,7 +251,6 @@ namespace iRTVO
                                     }
                                     else 
                                     {
-                                        labels[i][(j * SharedData.theme.objects[i].itemCount) + k].Visibility = System.Windows.Visibility.Hidden;
                                         labels[i][(j * SharedData.theme.objects[i].itemCount) + k].Content = null;
                                         labels[i][(j * SharedData.theme.objects[i].itemCount) + k].Background = SharedData.theme.objects[i].labels[j].backgroundColor;
                                     }

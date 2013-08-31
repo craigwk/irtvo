@@ -28,7 +28,7 @@ public class Script : iRTVO.IScript
             case "officialpoints":
                 if (session.Standings.Count != drivercount)
                     this.UpdateSOF();
-                return Math.Round(this.points[standing.Position], MidpointRounding.ToEven).ToString();
+                return Math.Round(this.points[standing.Position], rounding).ToString();
                 break;
             default:
                 return "[invalid]";
@@ -51,7 +51,6 @@ public class Script : iRTVO.IScript
         }
     }
 
-
     public void ButtonPress(String method)
     {
     }
@@ -64,7 +63,7 @@ public class Script : iRTVO.IScript
     {
     }
 
-    private void UpdateSOF()
+    private void UpdateSOF() 
     {
         this.drivercount = Parent.getDrivers().Count;
         this.points = new List<Double>();
@@ -79,13 +78,11 @@ public class Script : iRTVO.IScript
         this.sof = basesof * Math.Log(this.drivercount / sofexpsum);
 
         // points
-        double winnerpoints;
-
-        winnerpoints = this.sof / 16 * 1.06 * this.drivercount / (this.drivercount + 1);
         for (int i = 0; i < this.drivercount; i++)
-            points.Add(winnerpoints * (this.drivercount - i) / (this.drivercount - 1));
-        // last position is half of the second last
-        points.Add(points.Last() / 2);
+            points.Add(Math.Floor(this.sof / 16 * (this.drivercount - i) / (this.drivercount - 1)));
 
+        // last position is half of the second last
+        points.Add(points.Last()/2);
+         
     }
 }

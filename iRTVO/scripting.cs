@@ -13,7 +13,6 @@ namespace iRTVO
         List<iRTVO.DriverInfo> getDrivers();
         iRTVO.Theme getTheme();
         iRTVO.Settings getSettings();
-        iRTVO.TrackInfo getTrackInfo();
     }
 
     public interface IScript
@@ -88,11 +87,6 @@ namespace iRTVO
         iRTVO.Settings IHost.getSettings()
         {
             return SharedData.settings;
-        }
-
-        iRTVO.TrackInfo IHost.getTrackInfo()
-        {
-            return SharedData.Track;
         }
     }
 }
