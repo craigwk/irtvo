@@ -207,7 +207,7 @@ Text property select what information is shown on the overlay. Different dataset
 || {country} || Country where track is located at || Canada || ||
 || {altitude_m} || Altitude from sea level in meters || 107 || ||
 || {altitude_ft} || Altitude from sea level in feet || 321 || ||
-|| {sky} || Sky condition || Clear || see transitions ||
+|| {sky} || Sky condition || Clear || See [ThemeReference#Translation] ||
 || {tracktemp_c} || Track temperature in celcius || 32 || ||
 || {tracktemp_f} || Track temperature in fahrenheit || 107 || ||
 || {airtemp_c} || Air temperature in celcius || 25 || ||
