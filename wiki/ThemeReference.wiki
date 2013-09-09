@@ -51,8 +51,6 @@ Program uses a few natural language words in its text fields. These words can be
 ||Partly Cloudy|| || Used with {sky} ||
 ||Mostly Cloudy|| || Used with {sky} ||
 ||Overcast|| || Used with {sky} ||
-||Light Fog|| || Used with {sky} ||
-||Heavy Fog|| || Used with {sky} ||
 
 = Overlays =
 
